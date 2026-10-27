@@ -42,7 +42,7 @@
 | [Java 웹 백엔드](docs/PROFILES.md#java-backend) | [ArchUnit](https://github.com/TNG/ArchUnit), [Spotless](https://github.com/diffplug/spotless), [Error Prone](https://github.com/google/error-prone) |
 | [Swift / iOS](docs/PROFILES.md#swift-ios) | [SwiftLint](https://github.com/realm/SwiftLint), [swift-format](https://github.com/swiftlang/swift-format) |
 | [Dart / Flutter](docs/PROFILES.md#dart-flutter) | [Dart analyzer / flutter analyze](https://github.com/dart-lang/sdk), [dependency_validator](https://pub.dev/packages/dependency_validator) |
-| [웹 / JavaScript / TypeScript](docs/PROFILES.md#typescript-web) | [TypeScript compiler](https://github.com/microsoft/TypeScript), [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint), [Knip](https://github.com/webpro-nl/knip) |
+| [웹 / JavaScript / TypeScript](docs/PROFILES.md#typescript-web) | [TypeScript compiler](https://github.com/microsoft/TypeScript), [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint), ([Knip](https://github.com/webpro-nl/knip) 또는 [Fallow](https://github.com/fallow-rs/fallow) 중 선택) |
 | [Go](docs/PROFILES.md#go) | [Staticcheck](https://github.com/dominikh/go-tools), [govulncheck](https://github.com/golang/vuln) |
 | [Rust](docs/PROFILES.md#rust) | [Clippy](https://github.com/rust-lang/rust-clippy), [cargo-machete](https://github.com/bnjbvr/cargo-machete), [cargo-deny](https://github.com/EmbarkStudios/cargo-deny) |
 | [Python](docs/PROFILES.md#python) | [Ruff](https://github.com/astral-sh/ruff), [deptry](https://github.com/osprey-oss/deptry), [Pyright](https://github.com/microsoft/pyright) |

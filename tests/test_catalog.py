@@ -95,6 +95,25 @@ class CatalogTests(unittest.TestCase):
                     self.assertIn(catalog.tool_link(self.tool(tool_id)), section)
         self.assertNotIn("추가 검사·교체 후보", section)
 
+    def test_knip_and_fallow_both_visible_as_a_choice(self):
+        readme = catalog.render(self.data, self.evidence)["README.md"]
+        row = next(line for line in readme.splitlines() if "](docs/PROFILES.md#typescript-web)" in line)
+        self.assertIn(catalog.tool_link(self.tool("knip")), row)
+        self.assertIn(catalog.tool_link(self.tool("fallow")), row)
+        self.assertIn("또는", row)
+        self.assertIn("중 선택", row)
+        self.assertNotIn(catalog.tool_link(self.tool("dependency-cruiser")), row)
+
+    def test_featured_alternative_must_remain_in_optional_group(self):
+        profile = next(p for p in self.data["profiles"] if p["id"] == "typescript-web")
+        profile["optional"].remove("fallow")
+        self.assert_rejected("featured alternative must be optional")
+
+    def test_featured_alternative_must_reference_a_base_tool(self):
+        profile = next(p for p in self.data["profiles"] if p["id"] == "typescript-web")
+        profile["featured_alternatives"] = {"not-a-base-tool": ["fallow"]}
+        self.assert_rejected("featured alternative base missing")
+
     def test_engine_label_matches_in_detailed_docs(self):
         generated = catalog.render(self.data, self.evidence)
         self.assertNotIn("[E]", generated["docs/TOOLS.md"])

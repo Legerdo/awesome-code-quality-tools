@@ -1201,6 +1201,11 @@
         "oxlint",
         "ast-grep"
       ],
+      "featured_alternatives": {
+        "knip": [
+          "fallow"
+        ]
+      },
       "navigation": [
         "codegraph"
       ],

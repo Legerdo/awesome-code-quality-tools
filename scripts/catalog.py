@@ -117,6 +117,19 @@ def validate(data: dict, evidence: list, policy: dict) -> list[str]:
                 if role == "navigation":
                     require(t.get("category") == "graph", f"non-graph navigation tool: {pid} -> {ident}")
         require(len(all_refs) == len(set(all_refs)), f"duplicate tool within profile: {pid}")
+        featured = p.get("featured_alternatives", {})
+        require(isinstance(featured, dict), f"invalid featured alternatives: {pid}")
+        if isinstance(featured, dict):
+            for base_id, candidates in featured.items():
+                require(base_id in p["base"], f"featured alternative base missing: {pid} -> {base_id}")
+                require(isinstance(candidates, list) and bool(candidates),
+                        f"empty featured alternatives: {pid} -> {base_id}")
+                if isinstance(candidates, list):
+                    require(len(candidates) == len(set(candidates)),
+                            f"duplicate featured alternatives: {pid} -> {base_id}")
+                    for candidate in candidates:
+                        require(candidate in p.get("optional", []),
+                                f"featured alternative must be optional: {pid} -> {candidate}")
     return errors
 
 
@@ -149,6 +162,18 @@ def render(data: dict, evidence: list) -> dict[str, str]:
 
     def links(ids: list[str]) -> str:
         return ", ".join(tool_link(lookup[i]) for i in ids) or "없음"
+
+    def readme_recommendations(profile: dict) -> str:
+        """Show featured replacements beside the default, without implying both are required."""
+        featured = profile.get("featured_alternatives", {})
+        parts = []
+        for ident in profile["base"]:
+            if ident in featured:
+                names = " 또는 ".join(tool_link(lookup[i]) for i in [ident, *featured[ident]])
+                parts.append(f"({names} 중 선택)")
+            else:
+                parts.append(tool_link(lookup[ident]))
+        return ", ".join(parts)
 
     def compact(items: list[dict]) -> str:
         return table(["도구", "주요 기능", "라이선스"], [[tool_link(t), t["summary"], license_link(t, ev)] for t in items])
@@ -192,7 +217,7 @@ def render(data: dict, evidence: list) -> dict[str, str]:
 
 """
     readme += table(["개발 환경", "먼저 살펴볼 도구"], [
-        [f"[{p['name']}](docs/PROFILES.md#{p['id']})", links(p["base"])] for p in data["profiles"]
+        [f"[{p['name']}](docs/PROFILES.md#{p['id']})", readme_recommendations(p)] for p in data["profiles"]
     ])
     readme += """
 
