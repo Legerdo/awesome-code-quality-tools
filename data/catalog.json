@@ -10,18 +10,18 @@
     "note": "이 저장소의 데이터 검사 통과는 수록된 분석기의 실행·정확도·엔진 호환성 검증이 아니다."
   },
   "categories": {
-    "graph": "코드 그래프·AI 탐색",
-    "common": "다언어 공통 품질·보안·실행",
-    "cpp": "Unreal·C++",
-    "csharp": "Unity·C#",
-    "jvm": "Android·Kotlin·Java",
-    "swift": "Swift·iOS",
-    "dart": "Dart·Flutter",
-    "web": "JavaScript·TypeScript",
+    "graph": "코드 그래프와 AI 탐색",
+    "common": "공통 품질 검사와 보안 도구",
+    "cpp": "Unreal / C++",
+    "csharp": "Unity / C#",
+    "jvm": "Android / Kotlin / Java",
+    "swift": "Swift / iOS",
+    "dart": "Dart / Flutter",
+    "web": "JavaScript / TypeScript",
     "go": "Go",
     "rust": "Rust",
     "python": "Python",
-    "godot": "Godot·GDScript",
+    "godot": "Godot / GDScript",
     "testing": "테스트 탐지력"
   },
   "tools": [
@@ -45,7 +45,7 @@
       "license": "MIT",
       "status": "permissive",
       "repo": "colbymchenry/codegraph",
-      "summary": "로컬 코드 그래프, 심볼·호출 관계, 변경 영향 및 영향받는 테스트 탐색. CLI/MCP와 증분 동기화.",
+      "summary": "심볼과 호출 관계를 로컬 그래프로 만들고 변경 영향과 관련 테스트를 찾는다. CLI, MCP, 증분 동기화를 지원한다.",
       "limitations": "CodeGraphContext와 별개 프로젝트. GDScript 지원은 확인되지 않았다. 엔진 에셋·리플렉션을 완전히 해석한다고 가정하지 않는다. 설치 시 에이전트 설정 변경 및 telemetry를 확인한다.",
       "sources": [
         "https://colbymchenry.github.io/codegraph/reference/languages/",
@@ -62,7 +62,7 @@
       "license": "Apache-2.0",
       "status": "permissive",
       "repo": "Graphify-Labs/graphify",
-      "summary": "코드 구조와 문서·설계자료를 연결하는 지식 그래프.",
+      "summary": "코드 구조를 문서와 설계 자료에 연결해 지식 그래프를 만든다.",
       "limitations": "OSS 패키지 graphifyy만 포함한다. Cloud/Enterprise는 제외. 구조 추출과 LLM 추론을 구분하며, LICENSE-MIT·NOTICE와 선택한 모델의 비용·데이터 전송 조건도 확인한다."
     },
     {
@@ -75,7 +75,7 @@
       "license": "MIT",
       "status": "permissive",
       "repo": "Egonex-AI/Understand-Anything",
-      "summary": "코드베이스 시각화, 아키텍처 설명, 온보딩·가이드 투어.",
+      "summary": "코드베이스를 시각화하고 아키텍처 설명과 처음 접하는 코드를 위한 안내를 제공한다.",
       "limitations": "LLM 설명은 검증된 호출 관계와 동일하지 않다. 언어별 분석 깊이 및 외부 모델 비용·데이터 전송 조건은 별도 확인한다."
     },
     {
@@ -88,7 +88,7 @@
       "license": "MIT",
       "status": "permissive",
       "repo": "CodeGraphContext/CodeGraphContext",
-      "summary": "코드 관계를 그래프 DB에 저장하고 CLI/MCP로 질의. 일부 언어의 SCIP 인덱싱 지원.",
+      "summary": "코드의 관계를 그래프 DB에 저장하고 CLI나 MCP로 조회한다. 일부 언어에서는 SCIP 인덱싱을 지원한다.",
       "limitations": "본체만 MIT로 분류한다. DB·인덱서·플러그인의 별도 라이선스를 확인한다. Neo4j Community 등 copyleft 백엔드는 기본 구성에서 제외한다."
     },
     {
@@ -101,7 +101,7 @@
       "license": "Apache-2.0",
       "status": "permissive",
       "repo": "joernio/joern",
-      "summary": "Code Property Graph 기반 제어 흐름·데이터 흐름·보안 질의.",
+      "summary": "Code Property Graph로 제어 흐름과 데이터 흐름을 분석하고 보안 관련 질의를 수행한다.",
       "limitations": "언어별 프런트엔드와 구성요소를 따로 확인한다. 일반 탐색 도구보다 분석 지식과 설정 비용이 필요하다."
     },
     {
@@ -161,7 +161,7 @@
       "license": "MIT",
       "status": "permissive",
       "repo": "ast-grep/ast-grep",
-      "summary": "Tree-sitter AST 패턴 검색, 사용자 정의 규칙, 구조적 코드 변환.",
+      "summary": "Tree-sitter AST 패턴으로 코드를 찾고 사용자 정의 규칙과 구조적 코드 변환을 적용한다.",
       "limitations": "CLI와 Node API의 기본 언어 지원이 다르다. GDScript 기본 지원을 확인하지 않아 Godot 프로필에서는 제외한다. Semgrep의 고급 분석과 동등한 대체라는 뜻은 아니다.",
       "sources": [
         "https://ast-grep.github.io/reference/languages.html",
@@ -178,7 +178,7 @@
       "license": "MIT",
       "status": "permissive",
       "repo": "kucherenko/jscpd",
-      "summary": "여러 언어·파일 형식의 복사·붙여넣기 중복 탐지.",
+      "summary": "여러 언어와 파일 형식에서 복사해 붙여넣은 코드의 중복을 찾는다.",
       "limitations": "지원 형식에 한정된다. 토큰 중복을 의미적으로 같은 알고리즘이라는 판정으로 확대하지 않는다. 생성물·외부 코드를 분리한다."
     },
     {
@@ -191,7 +191,7 @@
       "license": "MIT",
       "status": "permissive",
       "repo": "terryyin/lizard",
-      "summary": "함수 길이·순환 복잡도 등 코드 메트릭.",
+      "summary": "함수 길이와 순환 복잡도 등 코드 메트릭을 측정한다.",
       "limitations": "지원 언어와 parser 한계를 확인한다. 메트릭은 검토 우선순위이지 버그나 나쁜 설계의 증명이 아니다."
     },
     {
@@ -204,7 +204,7 @@
       "license": "MIT",
       "status": "permissive",
       "repo": "gitleaks/gitleaks",
-      "summary": "소스와 Git 이력의 비밀정보 노출 탐지.",
+      "summary": "소스코드와 Git 기록에서 비밀정보 노출을 찾는다.",
       "limitations": "MIT CLI만 포함한다. 별도 gitleaks-action의 이용 조건은 포함하지 않으며 자체 CI에서 CLI를 실행한다."
     },
     {
@@ -217,7 +217,7 @@
       "license": "Apache-2.0",
       "status": "permissive",
       "repo": "google/osv-scanner",
-      "summary": "지원 manifest·lockfile·SBOM의 알려진 의존성 취약점 검사.",
+      "summary": "지원하는 manifest, lockfile, SBOM에서 알려진 의존성 취약점을 검사한다.",
       "limitations": "미사용 의존성 검사가 아니다. 엔진 패키지 형식까지 모두 지원한다고 가정하지 않는다.",
       "sources": [
         "https://google.github.io/osv-scanner/supported-languages-and-lockfiles/"
@@ -233,7 +233,7 @@
       "license": "MIT",
       "status": "permissive",
       "repo": "evilmartians/lefthook",
-      "summary": "Git hook에서 여러 검사 명령을 실행하는 러너.",
+      "summary": "Git hook에서 여러 검사 명령을 실행한다.",
       "limitations": "분석 엔진이 아니다. 로컬 hook은 우회 가능하므로 필수 검사는 CI에서도 실행한다."
     },
     {
@@ -999,7 +999,7 @@
     },
     {
       "id": "godot-warnings",
-      "name": "Godot GDScript 경고·엔진 검사",
+      "name": "Godot GDScript 경고와 엔진 검사",
       "category": "godot",
       "languages": [
         "gdscript"
@@ -1053,7 +1053,7 @@
       "license": "Apache-2.0",
       "status": "permissive",
       "repo": "stryker-mutator/stryker-js",
-      "summary": "코드 변이를 테스트가 잡아내는지 확인하는 mutation testing.",
+      "summary": "코드를 변형해 테스트가 결함을 찾아내는지 확인하는 mutation testing 도구다.",
       "limitations": "JS/TS와 일반 .NET 기준. Unity 전체 프로젝트 호환성을 검증하지 않았다. 실행 비용 때문에 핵심 로직부터 적용한다.",
       "sources": [
         "https://github.com/stryker-mutator/stryker-net",
@@ -1104,7 +1104,7 @@
     },
     {
       "id": "android",
-      "name": "Android / Kotlin·Java",
+      "name": "Android / Kotlin / Java",
       "languages": [
         "kotlin",
         "java"
@@ -1184,7 +1184,7 @@
     },
     {
       "id": "typescript-web",
-      "name": "웹 / JavaScript·TypeScript",
+      "name": "웹 / JavaScript / TypeScript",
       "languages": [
         "javascript",
         "typescript"

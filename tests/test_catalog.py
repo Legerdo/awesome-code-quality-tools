@@ -76,6 +76,30 @@ class CatalogTests(unittest.TestCase):
         self.assertNotIn("[GitNexus]", readme)
         self.assertIn("[CodeGraph]", readme)
 
+    def test_readme_uses_plain_korean_and_keeps_caveats(self):
+        readme = catalog.render(self.data, self.evidence)["README.md"]
+        self.assertNotIn("·", readme)
+        self.assertNotIn("[E]", readme)
+        self.assertIn("GPL, LGPL, AGPL이 상업적 사용을 금지하는 것은 아니다", readme)
+        self.assertIn("실제 실행, 탐지 정확도, 배포물의 전체 라이선스는 검증하지 않았다", readme)
+        self.assertIn("Godot의 GDScript는 CodeGraph의 확인된 지원 언어에 포함되지 않는다", readme)
+        self.assertIn("(엔진/SDK 제공)", readme)
+
+    def test_readme_links_every_stack_to_a_profile(self):
+        readme = catalog.render(self.data, self.evidence)["README.md"]
+        section = readme.split('<a id="quick-start"></a>', 1)[1].split('<a id="graphs"></a>', 1)[0]
+        for profile in self.data["profiles"]:
+            with self.subTest(profile=profile["id"]):
+                self.assertIn(f"](docs/PROFILES.md#{profile['id']})", section)
+                for tool_id in profile["base"]:
+                    self.assertIn(catalog.tool_link(self.tool(tool_id)), section)
+        self.assertNotIn("추가 검사·교체 후보", section)
+
+    def test_engine_label_matches_in_detailed_docs(self):
+        generated = catalog.render(self.data, self.evidence)
+        self.assertNotIn("[E]", generated["docs/TOOLS.md"])
+        self.assertIn("(엔진/SDK 제공)", generated["docs/TOOLS.md"])
+
     def test_generated_files_are_current(self):
         for name, expected in catalog.render(self.data, self.evidence).items():
             with self.subTest(name=name):

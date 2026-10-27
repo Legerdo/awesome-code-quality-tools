@@ -10,6 +10,8 @@
 4. 관련 프로필에 추가하되 지원 언어를 과장하지 않는다. 같은 역할의 대안을 모두 필수로 두지 않는다. 제외 도구는 프로필에 참조할 수 없다.
 5. 기준일을 갱신하고 아래 명령을 실행한다. 생성 파일을 직접 고치지 않는다.
 
+README나 상세 문서의 문장과 표 구성을 바꾸려면 `scripts/catalog.py`의 생성 부분을 수정한다. 도구 설명과 프로필은 `data/catalog.json`에서 관리한다. 변경한 내용은 문서 재생성 후 확인한다.
+
 ```powershell
 python scripts/catalog.py --write
 python scripts/catalog.py --check
