@@ -81,7 +81,7 @@ Xcode 빌드·테스트에는 macOS 러너가 필요하다. 이 목록에서 검
 | 추가 또는 대체 | [Fallow](https://github.com/fallow-rs/fallow), [dependency-cruiser](https://github.com/sverweij/dependency-cruiser), [Biome](https://github.com/biomejs/biome), [Oxlint](https://github.com/oxc-project/oxc), [ast-grep](https://github.com/ast-grep/ast-grep) |
 | 코드 탐색 | [CodeGraph](https://github.com/colbymchenry/codegraph) |
 
-Knip은 시작 예시이고 Fallow로 대체 가능하다. 린터·포매터를 모두 동시에 필수로 켜지 않는다. Fallow는 MIT 정적 코어만 포함한다.
+Knip과 Fallow는 병행 실행할 수 있다. 미사용 코드와 의존성 진단은 겹치므로 결과 중복과 CI 차단 기준을 조정한다. Fallow의 복잡도, 중복, 순환 의존성, 아키텍처 검사도 활용할 수 있다. 자동 수정은 변경 사항을 검토한 뒤 적용한다. 다른 린터와 포매터도 모두 필수로 켤 필요는 없다. Fallow는 MIT 정적 코어만 포함한다.
 
 <a id="go"></a>
 ## Go

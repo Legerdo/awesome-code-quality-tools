@@ -95,24 +95,31 @@ class CatalogTests(unittest.TestCase):
                     self.assertIn(catalog.tool_link(self.tool(tool_id)), section)
         self.assertNotIn("추가 검사·교체 후보", section)
 
-    def test_knip_and_fallow_both_visible_as_a_choice(self):
+    def test_knip_and_fallow_visible_without_forcing_a_choice(self):
         readme = catalog.render(self.data, self.evidence)["README.md"]
         row = next(line for line in readme.splitlines() if "](docs/PROFILES.md#typescript-web)" in line)
         self.assertIn(catalog.tool_link(self.tool("knip")), row)
         self.assertIn(catalog.tool_link(self.tool("fallow")), row)
-        self.assertIn("또는", row)
-        self.assertIn("중 선택", row)
+        self.assertIn("병행 사용 가능", row)
+        self.assertNotIn("중 선택", row)
+        self.assertNotIn("또는", row)
+        self.assertIn("중복되는 미사용 진단은 CI에서 이중 집계하지 않도록 관리", readme)
         self.assertNotIn(catalog.tool_link(self.tool("dependency-cruiser")), row)
 
-    def test_featured_alternative_must_remain_in_optional_group(self):
+    def test_featured_optional_tool_must_remain_in_optional_group(self):
         profile = next(p for p in self.data["profiles"] if p["id"] == "typescript-web")
         profile["optional"].remove("fallow")
-        self.assert_rejected("featured alternative must be optional")
+        self.assert_rejected("featured optional tool must be optional")
 
-    def test_featured_alternative_must_reference_a_base_tool(self):
+    def test_featured_optional_tool_must_not_be_a_base_tool(self):
         profile = next(p for p in self.data["profiles"] if p["id"] == "typescript-web")
-        profile["featured_alternatives"] = {"not-a-base-tool": ["fallow"]}
-        self.assert_rejected("featured alternative base missing")
+        profile["featured_optional"] = ["knip"]
+        self.assert_rejected("featured optional tool must be optional")
+
+    def test_deprecated_mutually_exclusive_metadata_is_rejected(self):
+        profile = next(p for p in self.data["profiles"] if p["id"] == "typescript-web")
+        profile["featured_alternatives"] = {"knip": ["fallow"]}
+        self.assert_rejected("deprecated mutually exclusive alternatives")
 
     def test_engine_label_matches_in_detailed_docs(self):
         generated = catalog.render(self.data, self.evidence)

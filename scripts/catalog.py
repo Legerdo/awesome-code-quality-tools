@@ -117,19 +117,17 @@ def validate(data: dict, evidence: list, policy: dict) -> list[str]:
                 if role == "navigation":
                     require(t.get("category") == "graph", f"non-graph navigation tool: {pid} -> {ident}")
         require(len(all_refs) == len(set(all_refs)), f"duplicate tool within profile: {pid}")
-        featured = p.get("featured_alternatives", {})
-        require(isinstance(featured, dict), f"invalid featured alternatives: {pid}")
-        if isinstance(featured, dict):
-            for base_id, candidates in featured.items():
-                require(base_id in p["base"], f"featured alternative base missing: {pid} -> {base_id}")
-                require(isinstance(candidates, list) and bool(candidates),
-                        f"empty featured alternatives: {pid} -> {base_id}")
-                if isinstance(candidates, list):
-                    require(len(candidates) == len(set(candidates)),
-                            f"duplicate featured alternatives: {pid} -> {base_id}")
-                    for candidate in candidates:
-                        require(candidate in p.get("optional", []),
-                                f"featured alternative must be optional: {pid} -> {candidate}")
+        require("featured_alternatives" not in p, f"deprecated mutually exclusive alternatives: {pid}")
+        featured = p.get("featured_optional", [])
+        require(isinstance(featured, list), f"invalid featured optional tools: {pid}")
+        if isinstance(featured, list):
+            require(all(isinstance(candidate, str) for candidate in featured),
+                    f"invalid featured optional tool id: {pid}")
+            if all(isinstance(candidate, str) for candidate in featured):
+                require(len(featured) == len(set(featured)), f"duplicate featured optional tools: {pid}")
+                for candidate in featured:
+                    require(candidate in p.get("optional", []),
+                            f"featured optional tool must be optional: {pid} -> {candidate}")
     return errors
 
 
@@ -164,15 +162,11 @@ def render(data: dict, evidence: list) -> dict[str, str]:
         return ", ".join(tool_link(lookup[i]) for i in ids) or "없음"
 
     def readme_recommendations(profile: dict) -> str:
-        """Show featured replacements beside the default, without implying both are required."""
-        featured = profile.get("featured_alternatives", {})
-        parts = []
-        for ident in profile["base"]:
-            if ident in featured:
-                names = " 또는 ".join(tool_link(lookup[i]) for i in [ident, *featured[ident]])
-                parts.append(f"({names} 중 선택)")
-            else:
-                parts.append(tool_link(lookup[ident]))
+        """Show useful optional tools without presenting them as mutually exclusive."""
+        parts = [tool_link(lookup[ident]) for ident in profile["base"]]
+        featured = profile.get("featured_optional", [])
+        if featured:
+            parts.append(", ".join(tool_link(lookup[ident]) for ident in featured) + " (병행 사용 가능)")
         return ", ".join(parts)
 
     def compact(items: list[dict]) -> str:
@@ -220,6 +214,8 @@ def render(data: dict, evidence: list) -> dict[str, str]:
         [f"[{p['name']}](docs/PROFILES.md#{p['id']})", readme_recommendations(p)] for p in data["profiles"]
     ])
     readme += """
+
+**Knip과 Fallow:** 두 도구를 함께 실행할 수 있다. Knip은 미사용 파일, export, 의존성 검사에 집중하고, Fallow는 미사용 분석 외에도 복잡도, 코드 중복, 순환 의존성, 아키텍처 경계를 검사한다. 중복되는 미사용 진단은 CI에서 이중 집계하지 않도록 관리하고, 자동 수정은 변경 내용을 확인한 뒤 적용한다.
 
 Godot의 GDScript는 CodeGraph의 확인된 지원 언어에 포함되지 않는다. Godot 내장 LSP와 엔진 테스트를 활용하고, C#이나 GDExtension(C++)은 해당 언어의 도구를 따로 검토해야 한다.
 

@@ -42,11 +42,13 @@
 | [Java 웹 백엔드](docs/PROFILES.md#java-backend) | [ArchUnit](https://github.com/TNG/ArchUnit), [Spotless](https://github.com/diffplug/spotless), [Error Prone](https://github.com/google/error-prone) |
 | [Swift / iOS](docs/PROFILES.md#swift-ios) | [SwiftLint](https://github.com/realm/SwiftLint), [swift-format](https://github.com/swiftlang/swift-format) |
 | [Dart / Flutter](docs/PROFILES.md#dart-flutter) | [Dart analyzer / flutter analyze](https://github.com/dart-lang/sdk), [dependency_validator](https://pub.dev/packages/dependency_validator) |
-| [웹 / JavaScript / TypeScript](docs/PROFILES.md#typescript-web) | [TypeScript compiler](https://github.com/microsoft/TypeScript), [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint), ([Knip](https://github.com/webpro-nl/knip) 또는 [Fallow](https://github.com/fallow-rs/fallow) 중 선택) |
+| [웹 / JavaScript / TypeScript](docs/PROFILES.md#typescript-web) | [TypeScript compiler](https://github.com/microsoft/TypeScript), [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint), [Knip](https://github.com/webpro-nl/knip), [Fallow](https://github.com/fallow-rs/fallow) (병행 사용 가능) |
 | [Go](docs/PROFILES.md#go) | [Staticcheck](https://github.com/dominikh/go-tools), [govulncheck](https://github.com/golang/vuln) |
 | [Rust](docs/PROFILES.md#rust) | [Clippy](https://github.com/rust-lang/rust-clippy), [cargo-machete](https://github.com/bnjbvr/cargo-machete), [cargo-deny](https://github.com/EmbarkStudios/cargo-deny) |
 | [Python](docs/PROFILES.md#python) | [Ruff](https://github.com/astral-sh/ruff), [deptry](https://github.com/osprey-oss/deptry), [Pyright](https://github.com/microsoft/pyright) |
 | [Godot / GDScript](docs/PROFILES.md#godot) | [gdtoolkit](https://github.com/Scony/godot-gdscript-toolkit), [Godot GDScript 경고와 엔진 검사](https://github.com/godotengine/godot), [GUT](https://github.com/bitwes/Gut) |
+
+**Knip과 Fallow:** 두 도구를 함께 실행할 수 있다. Knip은 미사용 파일, export, 의존성 검사에 집중하고, Fallow는 미사용 분석 외에도 복잡도, 코드 중복, 순환 의존성, 아키텍처 경계를 검사한다. 중복되는 미사용 진단은 CI에서 이중 집계하지 않도록 관리하고, 자동 수정은 변경 내용을 확인한 뒤 적용한다.
 
 Godot의 GDScript는 CodeGraph의 확인된 지원 언어에 포함되지 않는다. Godot 내장 LSP와 엔진 테스트를 활용하고, C#이나 GDExtension(C++)은 해당 언어의 도구를 따로 검토해야 한다.
 
