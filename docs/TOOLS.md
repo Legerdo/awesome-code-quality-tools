@@ -5,129 +5,129 @@
 - [라이선스 정책](LICENSE-POLICY.md)
 - [추천 제외 이력](EXCLUDED.md)
 
-공식 문서를 바탕으로 선정한 후보이며 실제 실행, 성능, 오탐률은 검증하지 않았다. `multi`는 여러 언어를 지원한다는 뜻이지 모든 언어를 같은 수준으로 분석한다는 뜻은 아니다. 이름 뒤의 (엔진/SDK 제공) 표시는 제품별 사용 조건이 적용되는 기능이다. 라이선스 링크는 확인한 상위 원문으로 연결한다.
+공식 문서를 읽고 정리한 목록이다. 실제 실행, 성능, 오탐률은 검증하지 않았다. 라이선스를 누르면 확인한 원문을 볼 수 있다. (엔진/SDK 제공) 기능은 해당 제품의 사용 조건을 따른다.
 
 ## 코드 그래프와 AI 탐색
 
-| 도구 | 라이선스 원문 | 주요 기능 | 적용 범위 및 주의사항 |
+| 도구 | 라이선스 | 주요 기능 | 조건과 한계 |
 | --- | --- | --- | --- |
-| <a id="codegraph"></a>[CodeGraph](https://github.com/colbymchenry/codegraph) | [MIT](https://github.com/colbymchenry/codegraph/blob/main/LICENSE) | 심볼과 호출 관계를 로컬 그래프로 만들고 변경 영향과 관련 테스트를 찾는다. CLI, MCP, 증분 동기화를 지원한다. | CodeGraphContext와 별개 프로젝트. GDScript 지원은 확인되지 않았다. 엔진 에셋·리플렉션을 완전히 해석한다고 가정하지 않는다. 설치 시 에이전트 설정 변경 및 telemetry를 확인한다. [문서 1](https://colbymchenry.github.io/codegraph/reference/languages/) [문서 2](https://github.com/colbymchenry/codegraph/blob/main/TELEMETRY.md) |
-| <a id="graphify"></a>[Graphify](https://github.com/Graphify-Labs/graphify) | [Apache-2.0](https://github.com/Graphify-Labs/graphify/blob/v8/LICENSE) | 코드 구조를 문서와 설계 자료에 연결해 지식 그래프를 만든다. | OSS 패키지 graphifyy만 포함한다. Cloud/Enterprise는 제외. 구조 추출과 LLM 추론을 구분하며, LICENSE-MIT·NOTICE와 선택한 모델의 비용·데이터 전송 조건도 확인한다. |
-| <a id="understand-anything"></a>[Understand Anything](https://github.com/Egonex-AI/Understand-Anything) | [MIT](https://github.com/Egonex-AI/Understand-Anything/blob/main/LICENSE) | 코드베이스를 시각화하고 아키텍처 설명과 처음 접하는 코드를 위한 안내를 제공한다. | LLM 설명은 검증된 호출 관계와 동일하지 않다. 언어별 분석 깊이 및 외부 모델 비용·데이터 전송 조건은 별도 확인한다. |
-| <a id="codegraphcontext"></a>[CodeGraphContext](https://github.com/CodeGraphContext/CodeGraphContext) | [MIT](https://github.com/CodeGraphContext/CodeGraphContext/blob/main/LICENSE) | 코드의 관계를 그래프 DB에 저장하고 CLI나 MCP로 조회한다. 일부 언어에서는 SCIP 인덱싱을 지원한다. | 본체만 MIT로 분류한다. DB·인덱서·플러그인의 별도 라이선스를 확인한다. Neo4j Community 등 copyleft 백엔드는 기본 구성에서 제외한다. |
-| <a id="joern"></a>[Joern](https://github.com/joernio/joern) | [Apache-2.0](https://github.com/joernio/joern/blob/master/LICENSE) | Code Property Graph로 제어 흐름과 데이터 흐름을 분석하고 보안 관련 질의를 수행한다. | 언어별 프런트엔드와 구성요소를 따로 확인한다. 일반 탐색 도구보다 분석 지식과 설정 비용이 필요하다. |
+| <a id="codegraph"></a>[CodeGraph](https://github.com/colbymchenry/codegraph) | [MIT](https://github.com/colbymchenry/codegraph/blob/main/LICENSE) | 지정한 저장소의 심볼과 호출 관계를 로컬 그래프로 만들어 변경 영향과 관련 테스트를 찾는다. CLI, MCP, 증분 동기화를 지원한다. | CodeGraphContext와는 별개의 프로젝트이며 GDScript 지원 여부는 확인되지 않았다. 엔진 에셋과 리플렉션을 완전히 해석한다고 가정하지 않는다. 설치 과정에서 에이전트 설정 변경과 telemetry를 확인한다. [문서 1](https://colbymchenry.github.io/codegraph/reference/languages/) [문서 2](https://github.com/colbymchenry/codegraph/blob/main/TELEMETRY.md) |
+| <a id="graphify"></a>[Graphify](https://github.com/Graphify-Labs/graphify) | [Apache-2.0](https://github.com/Graphify-Labs/graphify/blob/v8/LICENSE) | 코드 구조를 문서와 설계 자료에 연결해 지식 그래프를 만든다. | 오픈소스 패키지 graphifyy만 포함하며 Cloud/Enterprise는 제외한다. 코드에서 추출한 구조와 LLM의 추론을 구분한다. LICENSE-MIT과 NOTICE, 선택한 모델의 비용과 데이터 전송 조건도 확인한다. |
+| <a id="understand-anything"></a>[Understand Anything](https://github.com/Egonex-AI/Understand-Anything) | [MIT](https://github.com/Egonex-AI/Understand-Anything/blob/main/LICENSE) | 코드베이스를 시각화하고 처음 읽는 사람에게 구조와 아키텍처를 설명한다. | LLM이 설명한 내용이 검증된 호출 관계와 일치한다고 볼 수 없다. 언어별 분석 범위와 외부 모델의 비용 및 데이터 전송 조건을 별도로 확인한다. |
+| <a id="codegraphcontext"></a>[CodeGraphContext](https://github.com/CodeGraphContext/CodeGraphContext) | [MIT](https://github.com/CodeGraphContext/CodeGraphContext/blob/main/LICENSE) | 코드의 관계를 그래프 DB에 저장하고 CLI나 MCP로 조회한다. 일부 언어에서는 SCIP 인덱싱을 지원한다. | MIT 표기는 본체에만 적용한다. DB, 인덱서, 플러그인의 라이선스는 별도로 확인한다. Neo4j Community 등 copyleft 백엔드는 기본 구성에서 제외한다. |
+| <a id="joern"></a>[Joern](https://github.com/joernio/joern) | [Apache-2.0](https://github.com/joernio/joern/blob/master/LICENSE) | Code Property Graph를 이용해 제어 흐름과 데이터 흐름을 분석하고 보안 관련 질의를 수행한다. | 언어별 프런트엔드와 구성요소를 각각 확인해야 한다. 일반 탐색 도구보다 분석 지식과 설정에 드는 노력이 많이 필요하다. |
 
 ## 공통 품질 검사와 보안 도구
 
-| 도구 | 라이선스 원문 | 주요 기능 | 적용 범위 및 주의사항 |
+| 도구 | 라이선스 | 주요 기능 | 조건과 한계 |
 | --- | --- | --- | --- |
-| <a id="ast-grep"></a>[ast-grep](https://github.com/ast-grep/ast-grep) | [MIT](https://github.com/ast-grep/ast-grep/blob/main/LICENSE) | Tree-sitter AST 패턴으로 코드를 찾고 사용자 정의 규칙과 구조적 코드 변환을 적용한다. | CLI와 Node API의 기본 언어 지원이 다르다. GDScript 기본 지원을 확인하지 않아 Godot 프로필에서는 제외한다. Semgrep의 고급 분석과 동등한 대체라는 뜻은 아니다. [문서 1](https://ast-grep.github.io/reference/languages.html) [문서 2](https://ast-grep.github.io/reference/api) |
-| <a id="jscpd"></a>[jscpd](https://github.com/kucherenko/jscpd) | [MIT](https://github.com/kucherenko/jscpd/blob/master/LICENSE) | 여러 언어와 파일 형식에서 복사해 붙여넣은 코드의 중복을 찾는다. | 지원 형식에 한정된다. 토큰 중복을 의미적으로 같은 알고리즘이라는 판정으로 확대하지 않는다. 생성물·외부 코드를 분리한다. |
-| <a id="lizard"></a>[Lizard](https://github.com/terryyin/lizard) | [MIT](https://github.com/terryyin/lizard/blob/master/LICENSE.txt) | 함수 길이와 순환 복잡도 등 코드 메트릭을 측정한다. | 지원 언어와 parser 한계를 확인한다. 메트릭은 검토 우선순위이지 버그나 나쁜 설계의 증명이 아니다. |
-| <a id="gitleaks"></a>[Gitleaks CLI](https://github.com/gitleaks/gitleaks) | [MIT](https://github.com/gitleaks/gitleaks/blob/master/LICENSE) | 소스코드와 Git 기록에서 비밀정보 노출을 찾는다. | MIT CLI만 포함한다. 별도 gitleaks-action의 이용 조건은 포함하지 않으며 자체 CI에서 CLI를 실행한다. |
-| <a id="osv-scanner"></a>[OSV-Scanner](https://github.com/google/osv-scanner) | [Apache-2.0](https://github.com/google/osv-scanner/blob/main/LICENSE) | 지원하는 manifest, lockfile, SBOM에서 알려진 의존성 취약점을 검사한다. | 미사용 의존성 검사가 아니다. 엔진 패키지 형식까지 모두 지원한다고 가정하지 않는다. [문서 1](https://google.github.io/osv-scanner/supported-languages-and-lockfiles/) |
-| <a id="lefthook"></a>[Lefthook](https://github.com/evilmartians/lefthook) | [MIT](https://github.com/evilmartians/lefthook/blob/master/LICENSE) | Git hook에서 여러 검사 명령을 실행한다. | 분석 엔진이 아니다. 로컬 hook은 우회 가능하므로 필수 검사는 CI에서도 실행한다. |
+| <a id="ast-grep"></a>[ast-grep](https://github.com/ast-grep/ast-grep) | [MIT](https://github.com/ast-grep/ast-grep/blob/main/LICENSE) | Tree-sitter AST 패턴으로 코드를 검색하고 사용자 정의 규칙과 구조적 코드 변환을 적용한다. | CLI와 Node API가 기본으로 지원하는 언어는 서로 다르다. GDScript 기본 지원 여부를 확인하지 못해 Godot 프로필에서는 제외한다. Semgrep의 고급 분석과 같은 기능을 제공한다고 확인한 것은 아니다. [문서 1](https://ast-grep.github.io/reference/languages.html) [문서 2](https://ast-grep.github.io/reference/api) |
+| <a id="jscpd"></a>[jscpd](https://github.com/kucherenko/jscpd) | [MIT](https://github.com/kucherenko/jscpd/blob/master/LICENSE) | 여러 언어와 파일 형식에서 복사해 붙여넣은 중복 코드를 찾는다. | 지원하는 파일 형식에서만 검사한다. 토큰이 중복된다고 의미적으로 같은 알고리즘이라고 단정할 수는 없다. 생성 코드와 외부 코드는 구분한다. |
+| <a id="lizard"></a>[Lizard](https://github.com/terryyin/lizard) | [MIT](https://github.com/terryyin/lizard/blob/master/LICENSE.txt) | 함수 길이와 순환 복잡도 등 코드 메트릭을 측정한다. | 지원 언어와 파서의 한계를 확인한다. 수치는 검토 순서를 정하는 데 활용할 수 있지만, 그 수치만으로 버그나 설계 결함을 확정할 수는 없다. |
+| <a id="gitleaks"></a>[Gitleaks CLI](https://github.com/gitleaks/gitleaks) | [MIT](https://github.com/gitleaks/gitleaks/blob/master/LICENSE) | 소스코드와 Git 기록에서 비밀정보 노출을 찾는다. | MIT 라이선스의 CLI만 포함하며 별도 gitleaks-action의 이용 조건은 포함하지 않는다. 자체 CI에서 CLI를 실행한다. |
+| <a id="osv-scanner"></a>[OSV-Scanner](https://github.com/google/osv-scanner) | [Apache-2.0](https://github.com/google/osv-scanner/blob/main/LICENSE) | 지원하는 manifest, lockfile, SBOM에서 알려진 의존성 취약점을 검사한다. | 미사용 의존성을 찾는 도구는 아니다. 모든 엔진 패키지 형식까지 지원한다고 가정하지 않는다. [문서 1](https://google.github.io/osv-scanner/supported-languages-and-lockfiles/) |
+| <a id="lefthook"></a>[Lefthook](https://github.com/evilmartians/lefthook) | [MIT](https://github.com/evilmartians/lefthook/blob/master/LICENSE) | Git hook에서 여러 검사 명령을 실행한다. | 직접 코드를 분석하는 엔진은 아니다. 로컬 hook은 우회할 수 있으므로 필수 검사는 CI에서도 실행한다. |
 
 ## Unreal / C++
 
-| 도구 | 라이선스 원문 | 주요 기능 | 적용 범위 및 주의사항 |
+| 도구 | 라이선스 | 주요 기능 | 조건과 한계 |
 | --- | --- | --- | --- |
-| <a id="clang-tidy"></a>[clang-tidy](https://github.com/llvm/llvm-project) | [Apache-2.0 WITH LLVM-exception](https://github.com/llvm/llvm-project/blob/main/clang/LICENSE.TXT) | C/C++ 버그 패턴·코딩 규칙·성능 관련 정적 검사. | Unreal의 매크로·include·생성 헤더·컴파일 옵션을 반영한 compilation database가 중요하다. [문서 1](https://clang.llvm.org/extra/clang-tidy/) |
-| <a id="unreal-static-analysis"></a>[Unreal Build Tool 정적 분석](https://dev.epicgames.com/documentation/unreal-engine/static-code-analysis-in-unreal-engine) (엔진/SDK 제공) | [Unreal Engine EULA](https://www.unrealengine.com/en-US/eula/unreal) | Unreal 빌드 문맥에서 컴파일러 정적 분석 실행. | 선택한 분석기 및 엔진 버전의 조건을 따로 확인한다. 엔진 라이선스하의 내부 개발 기능이며 독립형 퍼미시브 OSS가 아니다. |
-| <a id="unreal-data-validation"></a>[Unreal Data Validation](https://dev.epicgames.com/documentation/unreal-engine/data-validation-in-unreal-engine) (엔진/SDK 제공) | [Unreal Engine EULA](https://www.unrealengine.com/en-US/eula/unreal) | 에셋·명명·의존성 등 Unreal 프로젝트 규칙 검증. | 코드 분석과 별도다. C++·Blueprint·Python 검증기의 실제 실행 범위를 확인한다. 엔진 라이선스 예외로만 유지한다. |
+| <a id="clang-tidy"></a>[clang-tidy](https://github.com/llvm/llvm-project) | [Apache-2.0 WITH LLVM-exception](https://github.com/llvm/llvm-project/blob/main/clang/LICENSE.TXT) | C/C++의 버그 패턴, 코딩 규칙 위반, 성능 관련 문제를 정적으로 검사한다. | 컴파일 데이터베이스(compilation database)에 Unreal의 매크로, include, 생성 헤더, 컴파일 옵션이 반영됐는지 확인한다. [문서 1](https://clang.llvm.org/extra/clang-tidy/) |
+| <a id="unreal-static-analysis"></a>[Unreal Build Tool 정적 분석](https://dev.epicgames.com/documentation/unreal-engine/static-code-analysis-in-unreal-engine) (엔진/SDK 제공) | [Unreal Engine EULA](https://www.unrealengine.com/en-US/eula/unreal) | Unreal의 빌드 설정을 사용해 컴파일러 정적 분석을 실행한다. | 선택한 분석기와 엔진 버전의 이용 조건을 별도로 확인한다. 엔진 라이선스에 따른 내부 개발 기능으로, 독립적인 퍼미시브 OSS는 아니다. |
+| <a id="unreal-data-validation"></a>[Unreal Data Validation](https://dev.epicgames.com/documentation/unreal-engine/data-validation-in-unreal-engine) (엔진/SDK 제공) | [Unreal Engine EULA](https://www.unrealengine.com/en-US/eula/unreal) | 에셋, 명명 규칙, 의존성 등 Unreal 프로젝트 규칙을 검증한다. | 코드 분석과는 별개의 검사다. C++, Blueprint, Python 검증기가 실제로 검사하는 범위를 확인한다. 엔진 라이선스 예외로만 유지한다. |
 
 ## Unity / C#
 
-| 도구 | 라이선스 원문 | 주요 기능 | 적용 범위 및 주의사항 |
+| 도구 | 라이선스 | 주요 기능 | 조건과 한계 |
 | --- | --- | --- | --- |
-| <a id="unity-analyzers"></a>[Microsoft.Unity.Analyzers](https://github.com/microsoft/Microsoft.Unity.Analyzers) | [MIT](https://github.com/microsoft/Microsoft.Unity.Analyzers/blob/main/LICENSE) | Unity 전용 Roslyn 진단과 일부 일반 C# 경고 억제. | Unity 에디터가 지원하는 Roslyn 버전과 배포 방식을 맞춘다. 분석기 자체 빌드 SDK 요구와 소비자 프로젝트 요구를 혼동하지 않는다. |
-| <a id="unity-project-auditor"></a>[Unity Project Auditor](https://docs.unity3d.com/Packages/com.unity.project-auditor@1.0/manual/index.html) (엔진/SDK 제공) | [Unity package-specific terms](https://github.com/Unity-Technologies/ProjectAuditor/blob/master/LICENSE.md) | Unity 스크립트·에셋·설정의 프로젝트 문제 분석. | 옛 GitHub 배포 대신 UPM com.unity.project-auditor를 기준으로 한다. 실제 패키지 LICENSE와 Unity 사용 조건 확인이 필요하다. |
-| <a id="unity-test-framework"></a>[Unity Test Framework](https://docs.unity3d.com/Packages/com.unity.test-framework@1.4/manual/index.html) (엔진/SDK 제공) | [Unity package-specific terms](https://unity.com/legal/licenses/unity-companion-license) | Unity Edit Mode·Play Mode 테스트. | 사용할 에디터와 패키지의 LICENSE를 확인한다. 엔진 종속 예외이며 빌드 성공·테스트 통과를 분리한다. |
-| <a id="archunitnet"></a>[ArchUnitNET](https://github.com/TNG/ArchUnitNET) | [Apache-2.0](https://github.com/TNG/ArchUnitNET/blob/main/LICENSE) | .NET 어셈블리의 계층·의존성 규칙을 테스트로 강제. | Unity 프로젝트 전체에 즉시 적용된다고 검증하지 않았다. 순수 C# 도메인·분석 가능한 어셈블리부터 확인한다. |
+| <a id="unity-analyzers"></a>[Microsoft.Unity.Analyzers](https://github.com/microsoft/Microsoft.Unity.Analyzers) | [MIT](https://github.com/microsoft/Microsoft.Unity.Analyzers/blob/main/LICENSE) | Unity 전용 Roslyn 진단을 제공하고 일부 일반 C# 경고를 억제한다. | Unity 에디터가 지원하는 Roslyn 버전과 배포 방식에 맞춰 구성한다. 분석기를 빌드할 때 필요한 SDK와 분석기를 사용하는 프로젝트의 요구사항을 구분한다. |
+| <a id="unity-project-auditor"></a>[Unity Project Auditor](https://docs.unity3d.com/Packages/com.unity.project-auditor@1.0/manual/index.html) (엔진/SDK 제공) | [Unity package-specific terms](https://github.com/Unity-Technologies/ProjectAuditor/blob/master/LICENSE.md) | Unity 프로젝트의 스크립트, 에셋, 설정에 있는 문제를 분석한다. | 과거 GitHub 배포 대신 UPM com.unity.project-auditor를 기준으로 한다. 실제 패키지 LICENSE와 Unity 사용 조건을 확인해야 한다. |
+| <a id="unity-test-framework"></a>[Unity Test Framework](https://docs.unity3d.com/Packages/com.unity.test-framework@1.4/manual/index.html) (엔진/SDK 제공) | [Unity package-specific terms](https://unity.com/legal/licenses/unity-companion-license) | Unity의 Edit Mode와 Play Mode에서 테스트를 실행한다. | 사용할 에디터와 패키지의 LICENSE를 확인한다. 엔진 종속 예외로 분류하며 빌드 성공과 테스트 통과는 구분한다. |
+| <a id="archunitnet"></a>[ArchUnitNET](https://github.com/TNG/ArchUnitNET) | [Apache-2.0](https://github.com/TNG/ArchUnitNET/blob/main/LICENSE) | .NET 어셈블리의 계층 구조와 의존성 규칙을 테스트로 검증한다. | Unity 프로젝트 전체에 바로 적용할 수 있는지는 검증하지 않았다. 순수 C# 도메인과 분석 가능한 어셈블리부터 확인한다. |
 
 ## Android / Kotlin / Java
 
-| 도구 | 라이선스 원문 | 주요 기능 | 적용 범위 및 주의사항 |
+| 도구 | 라이선스 | 주요 기능 | 조건과 한계 |
 | --- | --- | --- | --- |
-| <a id="android-lint"></a>[Android Lint](https://developer.android.com/studio/write/lint) (엔진/SDK 제공) | [Apache-2.0 sources; Android SDK distribution terms](https://android.googlesource.com/platform/tools/base/+/refs/heads/mirror-goog-studio-main/NOTICE) | Android 코드·XML·리소스·플랫폼 API 사용 검사. | AOSP 소스의 라이선스와 SDK 배포 이용 조건을 구분한다. 이 목록에서는 SDK 사용 경로를 예외로 분류한다. variant와 baseline을 명시한다. |
-| <a id="detekt"></a>[detekt](https://github.com/detekt/detekt) | [Apache-2.0](https://github.com/detekt/detekt/blob/main/LICENSE) | Kotlin 코드 스멜·복잡도·정적 규칙 검사. | Kotlin·Gradle 버전 및 type resolution을 맞춘다. Android Lint의 플랫폼 분석을 대체하지 않는다. |
-| <a id="ktlint"></a>[ktlint](https://github.com/ktlint/ktlint) | [MIT](https://github.com/ktlint/ktlint/blob/master/LICENSE) | Kotlin 포맷·스타일 검사. | 직접 실행 또는 Spotless 통합 중 하나를 정한다. 같은 파일에 경쟁하는 포매터를 두지 않는다. |
-| <a id="spotless"></a>[Spotless](https://github.com/diffplug/spotless) | [Apache-2.0](https://github.com/diffplug/spotless/blob/main/LICENSE.txt) | Gradle·Maven에서 포맷 검사와 수정 통합. | 실제로 호출하는 포맷 엔진과 해당 라이선스를 확인한다. 코드 의미 분석기는 아니다. |
-| <a id="gradle-dependency-analysis"></a>[Dependency Analysis Gradle Plugin](https://github.com/autonomousapps/dependency-analysis-gradle-plugin) | [Apache-2.0](https://github.com/autonomousapps/dependency-analysis-gradle-plugin/blob/main/LICENSE.txt) | 미사용·누락 의존성과 api/implementation 등 구성 문제 검사. | 리플렉션·서비스 등록·동적 로딩은 검토가 필요하다. 제거 후 관련 빌드·통합 테스트를 수행한다. |
-| <a id="error-prone"></a>[Error Prone](https://github.com/google/error-prone) | [Apache-2.0](https://github.com/google/error-prone/blob/master/COPYING) | javac에 결합하는 Java 오류 패턴 검사. | Kotlin 전용 분석이 아니다. JDK 및 빌드 플러그인 통합 조건을 확인한다. [문서 1](https://errorprone.info/) |
-| <a id="archunit"></a>[ArchUnit](https://github.com/TNG/ArchUnit) | [Apache-2.0](https://github.com/TNG/ArchUnit/blob/main/LICENSE) | 계층·패키지 의존성·순환 관계를 아키텍처 테스트로 강제. | JVM 바이트코드 분석과 소스 수준 규칙을 구분한다. Kotlin 생성 코드에 대한 규칙 동작은 별도 확인한다. [문서 1](https://www.archunit.org/) |
-| <a id="maven-dependency-analyze"></a>[Maven dependency:analyze](https://github.com/apache/maven-dependency-plugin) | [Apache-2.0](https://github.com/apache/maven-dependency-plugin/blob/master/LICENSE) | Maven의 사용·미사용·선언 누락 의존성 분석. | 바이트코드 분석 한계가 있다. lifecycle에서는 analyze-only를 검토하고, failOnWarning 기본값 false와 CI 실패 조건을 구분한다. [문서 1](https://maven.apache.org/plugins/maven-dependency-plugin/analyze-mojo.html) |
+| <a id="android-lint"></a>[Android Lint](https://developer.android.com/studio/write/lint) (엔진/SDK 제공) | [Apache-2.0 sources; Android SDK distribution terms](https://android.googlesource.com/platform/tools/base/+/refs/heads/mirror-goog-studio-main/NOTICE) | Android 코드, XML, 리소스, 플랫폼 API 사용을 검사한다. | AOSP 소스의 라이선스와 SDK 배포 이용 조건을 구분한다. 이 목록에서는 SDK 사용 경로를 예외로 분류하며 variant와 baseline을 명시한다. |
+| <a id="detekt"></a>[detekt](https://github.com/detekt/detekt) | [Apache-2.0](https://github.com/detekt/detekt/blob/main/LICENSE) | Kotlin 코드 스멜, 복잡도, 정적 분석 규칙 위반을 검사한다. | Kotlin과 Gradle 버전 및 type resolution 설정을 맞춘다. Android Lint의 플랫폼 분석을 대체하지는 않는다. |
+| <a id="ktlint"></a>[ktlint](https://github.com/ktlint/ktlint) | [MIT](https://github.com/ktlint/ktlint/blob/master/LICENSE) | Kotlin 코드의 포맷과 스타일을 검사한다. | 직접 실행하거나 Spotless를 통해 사용할 수 있다. 같은 파일에 서로 충돌하는 포매터를 적용하지 않는다. |
+| <a id="spotless"></a>[Spotless](https://github.com/diffplug/spotless) | [Apache-2.0](https://github.com/diffplug/spotless/blob/main/LICENSE.txt) | Gradle과 Maven에서 코드 포맷 검사와 수정을 통합한다. | 실제로 호출하는 포맷 엔진과 해당 라이선스를 확인한다. 코드의 의미를 분석하는 도구는 아니다. |
+| <a id="gradle-dependency-analysis"></a>[Dependency Analysis Gradle Plugin](https://github.com/autonomousapps/dependency-analysis-gradle-plugin) | [Apache-2.0](https://github.com/autonomousapps/dependency-analysis-gradle-plugin/blob/main/LICENSE.txt) | 미사용 의존성, 누락된 의존성, api/implementation 등 의존성 구성 문제를 검사한다. | 리플렉션, 서비스 등록, 동적 로딩에 사용되는 의존성은 별도로 검토해야 한다. 의존성을 제거한 뒤 관련 빌드와 통합 테스트를 수행한다. |
+| <a id="error-prone"></a>[Error Prone](https://github.com/google/error-prone) | [Apache-2.0](https://github.com/google/error-prone/blob/master/COPYING) | javac와 연동해 Java 코드의 오류 패턴을 검사한다. | Kotlin 전용 분석 도구는 아니다. JDK 및 빌드 플러그인과의 통합 조건을 확인한다. [문서 1](https://errorprone.info/) |
+| <a id="archunit"></a>[ArchUnit](https://github.com/TNG/ArchUnit) | [Apache-2.0](https://github.com/TNG/ArchUnit/blob/main/LICENSE) | 계층 구조, 패키지 의존성, 순환 관계에 관한 규칙을 아키텍처 테스트로 강제한다. | JVM 바이트코드 분석과 소스 코드 수준의 규칙을 구분한다. Kotlin 생성 코드에 규칙이 어떻게 적용되는지는 별도로 확인한다. [문서 1](https://www.archunit.org/) |
+| <a id="maven-dependency-analyze"></a>[Maven dependency:analyze](https://github.com/apache/maven-dependency-plugin) | [Apache-2.0](https://github.com/apache/maven-dependency-plugin/blob/master/LICENSE) | Maven 프로젝트에서 사용 중이거나 사용하지 않는 의존성과 선언이 누락된 의존성을 분석한다. | 바이트코드 분석에는 한계가 있다. lifecycle에서는 analyze-only 사용을 검토하고, failOnWarning의 기본값인 false와 CI 실패 조건을 구분한다. [문서 1](https://maven.apache.org/plugins/maven-dependency-plugin/analyze-mojo.html) |
 
 ## Swift / iOS
 
-| 도구 | 라이선스 원문 | 주요 기능 | 적용 범위 및 주의사항 |
+| 도구 | 라이선스 | 주요 기능 | 조건과 한계 |
 | --- | --- | --- | --- |
-| <a id="swiftlint"></a>[SwiftLint](https://github.com/realm/SwiftLint) | [MIT](https://github.com/realm/SwiftLint/blob/main/LICENSE) | Swift 스타일·코딩 규칙·정적 진단. | SwiftSyntax·SourceKit·툴체인 호환성을 확인한다. 전체 미사용 선언 탐지기의 대체가 아니다. |
-| <a id="swift-format"></a>[swift-format](https://github.com/swiftlang/swift-format) | [Apache-2.0 WITH Swift-exception](https://github.com/swiftlang/swift-format/blob/main/LICENSE.txt) | Swift 공식 프로젝트의 포맷 도구. | SwiftLint의 포맷 규칙과 충돌하지 않게 구성한다. Xcode 기반 iOS 빌드·테스트에는 macOS가 필요하다. |
+| <a id="swiftlint"></a>[SwiftLint](https://github.com/realm/SwiftLint) | [MIT](https://github.com/realm/SwiftLint/blob/main/LICENSE) | Swift 코드의 스타일과 코딩 규칙을 검사하고 정적 진단을 제공한다. | SwiftSyntax, SourceKit, 툴체인 호환성을 확인한다. 모든 미사용 선언을 탐지하는 도구를 대체하지는 않는다. |
+| <a id="swift-format"></a>[swift-format](https://github.com/swiftlang/swift-format) | [Apache-2.0 WITH Swift-exception](https://github.com/swiftlang/swift-format/blob/main/LICENSE.txt) | Swift 공식 프로젝트에서 제공하는 코드 포맷 도구다. | SwiftLint의 포맷 규칙과 충돌하지 않도록 설정한다. Xcode 기반 iOS 빌드와 테스트에는 macOS가 필요하다. |
 
 ## Dart / Flutter
 
-| 도구 | 라이선스 원문 | 주요 기능 | 적용 범위 및 주의사항 |
+| 도구 | 라이선스 | 주요 기능 | 조건과 한계 |
 | --- | --- | --- | --- |
-| <a id="dart-analyzer"></a>[Dart analyzer / flutter analyze](https://github.com/dart-lang/sdk) | [BSD-3-Clause](https://github.com/dart-lang/sdk/blob/main/LICENSE) | Dart 언어 분석·타입·lint 규칙. | 미사용 import·로컬 변수 진단과 프로젝트 전체 공개 API의 안전한 삭제 판정을 구분한다. [문서 1](https://dart.dev/tools/dart-analyze) |
-| <a id="dependency-validator"></a>[dependency_validator](https://pub.dev/packages/dependency_validator) | [Apache-2.0](https://pub.dev/packages/dependency_validator/license) | Dart 패키지의 누락·미사용 의존성과 배치 문제 검사. | Flutter 플러그인·빌더·생성 코드에서 결과를 검토한다. 전체 데드코드 분석기가 아니다. |
-| <a id="dart-code-linter"></a>[Dart Code Linter](https://github.com/bancolombia/dart-code-linter) | [MIT](https://github.com/bancolombia/dart-code-linter/blob/trunk/LICENSE) | Dart 추가 lint 규칙·복잡도·코드 메트릭. | 현재 Dart analyzer SDK 호환성을 확인한다. 상용 DCM과 동일 기능으로 취급하지 않는다. |
+| <a id="dart-analyzer"></a>[Dart analyzer / flutter analyze](https://github.com/dart-lang/sdk) | [BSD-3-Clause](https://github.com/dart-lang/sdk/blob/main/LICENSE) | Dart 코드의 언어 구조와 타입, lint 규칙 위반을 검사한다. | 미사용 import나 로컬 변수를 진단하는 것과 프로젝트 전체의 공개 API를 안전하게 삭제할 수 있는지 판단하는 것은 구분한다. [문서 1](https://dart.dev/tools/dart-analyze) |
+| <a id="dependency-validator"></a>[dependency_validator](https://pub.dev/packages/dependency_validator) | [Apache-2.0](https://pub.dev/packages/dependency_validator/license) | Dart 패키지에서 누락되거나 사용하지 않는 의존성과 의존성 배치 문제를 검사한다. | Flutter 플러그인, 빌더, 생성 코드와 관련된 검사 결과는 별도로 검토한다. 프로젝트 전체의 데드코드를 분석하는 도구는 아니다. |
+| <a id="dart-code-linter"></a>[Dart Code Linter](https://github.com/bancolombia/dart-code-linter) | [MIT](https://github.com/bancolombia/dart-code-linter/blob/trunk/LICENSE) | Dart 코드에 추가 lint 규칙을 적용하고 복잡도와 코드 메트릭을 검사한다. | 현재 Dart analyzer SDK와 호환되는지 확인한다. 상용 DCM과 기능이 같다고 가정하지 않는다. |
 
 ## JavaScript / TypeScript
 
-| 도구 | 라이선스 원문 | 주요 기능 | 적용 범위 및 주의사항 |
+| 도구 | 라이선스 | 주요 기능 | 조건과 한계 |
 | --- | --- | --- | --- |
-| <a id="typescript-compiler"></a>[TypeScript compiler](https://github.com/microsoft/TypeScript) | [Apache-2.0](https://github.com/microsoft/TypeScript/blob/main/LICENSE.txt) | TypeScript 정적 타입 검사. | tsconfig와 project reference 범위를 명시한다. 번들 성공·lint 통과와 타입 검사 통과는 별개다. |
-| <a id="typescript-eslint"></a>[typescript-eslint](https://github.com/typescript-eslint/typescript-eslint) | [MIT](https://github.com/typescript-eslint/typescript-eslint/blob/main/LICENSE) | ESLint와 TypeScript 타입 정보를 결합한 정적 규칙. | typed linting 설정과 프레임워크 플러그인을 확인한다. 타입 정보 생성 비용이 있다. [문서 1](https://typescript-eslint.io/getting-started/typed-linting/) |
-| <a id="knip"></a>[Knip](https://github.com/webpro-nl/knip) | [ISC](https://github.com/webpro-nl/knip/blob/main/LICENSE) | 미사용 파일·export·의존성 탐지. | entrypoint·프레임워크 플러그인·workspace 설정이 중요하다. 동적 경로를 검토한다. [문서 1](https://knip.dev/) |
-| <a id="fallow"></a>[Fallow](https://github.com/fallow-rs/fallow) | [MIT](https://github.com/fallow-rs/fallow/blob/main/LICENSE) | JS/TS 미사용 코드·중복·복잡도·순환 의존·아키텍처 경계 분석. | 정적 분석 MIT 코어만 포함하며 유료 Runtime은 제외한다. Rust로 구현됐지만 Rust 분석기는 아니다. Knip과 중복 차단하지 않도록 주 분석기를 정한다. |
-| <a id="dependency-cruiser"></a>[dependency-cruiser](https://github.com/sverweij/dependency-cruiser) | [MIT](https://github.com/sverweij/dependency-cruiser/blob/main/LICENSE) | 의존 그래프·순환 참조·계층 경계·금지 import 검사. | 시각화와 규칙 위반 판정을 분리한다. Fallow 경계 규칙으로 충분하면 추가 도입이 불필요할 수 있다. |
-| <a id="biome"></a>[Biome](https://github.com/biomejs/biome) | [Apache-2.0](https://github.com/biomejs/biome/blob/main/LICENSE-APACHE) | 웹 코드 lint·포맷 통합. | 기존 프레임워크 규칙·플러그인을 얼마나 대체하는지 확인한 뒤 교체한다. |
-| <a id="oxlint"></a>[Oxlint](https://github.com/oxc-project/oxc) | [MIT](https://github.com/oxc-project/oxc/blob/main/LICENSE) | JS/TS 린트와 선택적 타입 기반 검사. | 설치 구성·버전에 따른 규칙 지원을 확인한다. 오래된 syntax-only 소개를 현재 기능으로 간주하지 않는다. |
+| <a id="typescript-compiler"></a>[TypeScript compiler](https://github.com/microsoft/TypeScript) | [Apache-2.0](https://github.com/microsoft/TypeScript/blob/main/LICENSE.txt) | TypeScript 코드의 정적 타입을 검사한다. | tsconfig와 project reference의 검사 범위를 명시한다. 번들 생성, lint, 타입 검사는 각각 별도의 통과 기준을 가진다. |
+| <a id="typescript-eslint"></a>[typescript-eslint](https://github.com/typescript-eslint/typescript-eslint) | [MIT](https://github.com/typescript-eslint/typescript-eslint/blob/main/LICENSE) | ESLint에 TypeScript 타입 정보를 결합해 정적 분석 규칙을 적용한다. | typed linting 설정과 프레임워크 플러그인을 확인한다. 타입 정보를 생성하는 데 추가 비용이 든다. [문서 1](https://typescript-eslint.io/getting-started/typed-linting/) |
+| <a id="knip"></a>[Knip](https://github.com/webpro-nl/knip) | [ISC](https://github.com/webpro-nl/knip/blob/main/LICENSE) | 사용하지 않는 파일, export, 의존성을 찾는다. | entrypoint, 프레임워크 플러그인, workspace 설정이 검사 결과에 영향을 준다. 동적으로 참조하는 경로는 별도로 검토한다. [문서 1](https://knip.dev/) |
+| <a id="fallow"></a>[Fallow](https://github.com/fallow-rs/fallow) | [MIT](https://github.com/fallow-rs/fallow/blob/main/LICENSE) | JS/TS의 미사용 코드, 중복, 복잡도, 순환 의존성, 아키텍처 경계를 분석한다. | MIT 라이선스의 정적 분석 기능만 포함하고 유료 Runtime은 제외한다. Rust로 구현됐지만 Rust 코드 분석기는 아니다. Knip과 함께 쓸 수 있으며, 겹치는 진단의 집계 방식과 CI 판정 기준을 정한다. |
+| <a id="dependency-cruiser"></a>[dependency-cruiser](https://github.com/sverweij/dependency-cruiser) | [MIT](https://github.com/sverweij/dependency-cruiser/blob/main/LICENSE) | 의존성 그래프, 순환 참조, 계층 경계, 금지된 import를 검사한다. | 그래프 시각화와 규칙 위반 판정을 구분한다. Fallow의 경계 규칙만으로 충분하다면 추가 도입이 필요하지 않을 수 있다. |
+| <a id="biome"></a>[Biome](https://github.com/biomejs/biome) | [Apache-2.0](https://github.com/biomejs/biome/blob/main/LICENSE-APACHE) | 웹 코드의 lint 검사와 포맷 기능을 통합한다. | 기존 프레임워크 규칙과 플러그인을 어느 정도 대체할 수 있는지 확인한 뒤 교체한다. |
+| <a id="oxlint"></a>[Oxlint](https://github.com/oxc-project/oxc) | [MIT](https://github.com/oxc-project/oxc/blob/main/LICENSE) | JS/TS 코드를 lint로 검사하고 필요에 따라 타입 기반 검사도 수행한다. | 설치 구성과 버전에 따라 어떤 규칙을 지원하는지 확인한다. 과거의 syntax-only 설명만으로 현재 기능을 판단하지 않는다. |
 
 ## Go
 
-| 도구 | 라이선스 원문 | 주요 기능 | 적용 범위 및 주의사항 |
+| 도구 | 라이선스 | 주요 기능 | 조건과 한계 |
 | --- | --- | --- | --- |
-| <a id="staticcheck"></a>[Staticcheck](https://github.com/dominikh/go-tools) | [MIT](https://github.com/dominikh/go-tools/blob/master/LICENSE) | Go 정적 오류·코드 품질 진단. | 이 정책에서는 golangci-lint에 묶지 않고 단독 실행한다. go vet·빌드·테스트와 역할을 나눈다. |
-| <a id="go-deadcode"></a>[Go deadcode](https://github.com/golang/tools) | [BSD-3-Clause](https://github.com/golang/tools/blob/master/LICENSE) | 진입점에서 도달하지 못하는 Go 함수 탐지. | 공개 경로는 golang.org/x/tools/cmd/deadcode. main·테스트·build tag·target 범위를 정하며 라이브러리의 외부 호출자를 무시하지 않는다. [문서 1](https://go.dev/blog/deadcode) |
-| <a id="govulncheck"></a>[govulncheck](https://github.com/golang/vuln) | [BSD-3-Clause](https://github.com/golang/vuln/blob/master/LICENSE) | Go의 알려진 취약점과 취약 함수 호출 관계 분석. | 알려지지 않은 결함의 부재까지 증명하지 않는다. [문서 1](https://go.dev/doc/tutorial/govulncheck) |
+| <a id="staticcheck"></a>[Staticcheck](https://github.com/dominikh/go-tools) | [MIT](https://github.com/dominikh/go-tools/blob/master/LICENSE) | Go 코드의 정적 오류와 품질 문제를 진단한다. | 이 목록의 정책에 따라 golangci-lint와 통합하지 않고 단독 실행한다. go vet, 빌드, 테스트와 검사 역할을 구분한다. |
+| <a id="go-deadcode"></a>[Go deadcode](https://github.com/golang/tools) | [BSD-3-Clause](https://github.com/golang/tools/blob/master/LICENSE) | 진입점에서 호출 경로가 닿지 않는 Go 함수를 찾는다. | 공개 경로는 golang.org/x/tools/cmd/deadcode다. main, 테스트, build tag, target의 검사 범위를 정하고 라이브러리의 외부 호출 가능성도 고려한다. [문서 1](https://go.dev/blog/deadcode) |
+| <a id="govulncheck"></a>[govulncheck](https://github.com/golang/vuln) | [BSD-3-Clause](https://github.com/golang/vuln/blob/master/LICENSE) | Go 코드의 알려진 취약점과 취약 함수의 호출 관계를 분석한다. | 검사 결과가 알려지지 않은 결함까지 없다는 뜻은 아니다. [문서 1](https://go.dev/doc/tutorial/govulncheck) |
 
 ## Rust
 
-| 도구 | 라이선스 원문 | 주요 기능 | 적용 범위 및 주의사항 |
+| 도구 | 라이선스 | 주요 기능 | 조건과 한계 |
 | --- | --- | --- | --- |
-| <a id="clippy"></a>[Clippy](https://github.com/rust-lang/rust-clippy) | [MIT OR Apache-2.0](https://github.com/rust-lang/rust-clippy/blob/master/LICENSE-MIT) | Rust 정확성·의심 코드·복잡도·성능 lint. | restriction 전체를 일괄 활성화하지 않는다. feature·target·warning 정책을 명시한다. |
-| <a id="cargo-machete"></a>[cargo-machete](https://github.com/bnjbvr/cargo-machete) | [MIT](https://github.com/bnjbvr/cargo-machete/blob/main/LICENSE.md) | 빠른 휴리스틱 기반 미사용 Cargo 의존성 탐지. | 매크로·별칭·feature 조합에 대한 예외를 검토한다. 모든 구성에서 안전한 제거를 보증하지 않는다. |
-| <a id="cargo-udeps"></a>[cargo-udeps](https://github.com/est31/cargo-udeps) | [MIT OR Apache-2.0](https://github.com/est31/cargo-udeps/blob/master/LICENSE) | 컴파일 정보를 이용한 미사용 Cargo 의존성 분석. | 실행에는 nightly가 필요하다. 알려진 누락 사례가 있어 항상 machete보다 정확하다고 단정하지 않는다. |
-| <a id="cargo-deny"></a>[cargo-deny](https://github.com/EmbarkStudios/cargo-deny) | [Apache-2.0](https://github.com/EmbarkStudios/cargo-deny/blob/main/LICENSE-APACHE) | 의존성 권고·라이선스·소스·금지 패키지·중복 버전 정책 검사. | 프로젝트의 허용 정책을 직접 정의한다. 미사용 코드 검사는 아니다. |
+| <a id="clippy"></a>[Clippy](https://github.com/rust-lang/rust-clippy) | [MIT OR Apache-2.0](https://github.com/rust-lang/rust-clippy/blob/master/LICENSE-MIT) | Rust 코드의 정확성, 의심스러운 패턴, 복잡도, 성능 문제를 lint로 검사한다. | restriction 규칙을 모두 일괄 활성화하지 않는다. feature, target, warning에 관한 정책을 명시한다. |
+| <a id="cargo-machete"></a>[cargo-machete](https://github.com/bnjbvr/cargo-machete) | [MIT](https://github.com/bnjbvr/cargo-machete/blob/main/LICENSE.md) | 휴리스틱을 이용해 미사용 Cargo 의존성을 빠르게 찾는다. | 매크로, 별칭, feature 조합에 따른 예외를 검토한다. 모든 구성에서 의존성을 안전하게 제거할 수 있다고 보장하지는 않는다. |
+| <a id="cargo-udeps"></a>[cargo-udeps](https://github.com/est31/cargo-udeps) | [MIT OR Apache-2.0](https://github.com/est31/cargo-udeps/blob/master/LICENSE) | 컴파일 정보를 이용해 미사용 Cargo 의존성을 분석한다. | 실행하려면 nightly가 필요하다. 알려진 탐지 누락 사례가 있으므로 항상 cargo-machete보다 정확하다고 단정할 수는 없다. |
+| <a id="cargo-deny"></a>[cargo-deny](https://github.com/EmbarkStudios/cargo-deny) | [Apache-2.0](https://github.com/EmbarkStudios/cargo-deny/blob/main/LICENSE-APACHE) | 의존성 관련 권고, 라이선스, 소스, 금지된 패키지, 중복 버전 정책을 검사한다. | 프로젝트의 허용 정책을 직접 정의해야 한다. 미사용 코드를 검사하는 도구는 아니다. |
 
 ## Python
 
-| 도구 | 라이선스 원문 | 주요 기능 | 적용 범위 및 주의사항 |
+| 도구 | 라이선스 | 주요 기능 | 조건과 한계 |
 | --- | --- | --- | --- |
-| <a id="ruff"></a>[Ruff](https://github.com/astral-sh/ruff) | [MIT](https://github.com/astral-sh/ruff/blob/main/LICENSE) | Python lint·포맷·미사용 import 검사. | 타입 검사·의존성 분석·프로젝트 전체 데드코드 판정을 대신하지 않는다. |
-| <a id="mypy"></a>[mypy](https://github.com/python/mypy) | [MIT](https://github.com/python/mypy/blob/master/LICENSE) | Python 정적 타입 검사. | 본체 MIT 외 PSF/BSD 고지가 포함된 구성요소를 확인한다. Pyright와 동시에 필수로 두기보다 하나를 우선 선택한다. |
-| <a id="pyright"></a>[Pyright](https://github.com/microsoft/pyright) | [MIT](https://github.com/microsoft/pyright/blob/main/LICENSE.txt) | Python 정적 타입 검사 대안. | 별도 제품 Pylance의 조건을 Pyright와 혼동하지 않는다. mypy와 추론·진단이 완전히 같지는 않다. |
-| <a id="deptry"></a>[deptry](https://github.com/osprey-oss/deptry) | [MIT](https://github.com/osprey-oss/deptry/blob/main/LICENSE) | 미사용·누락·전이 의존성 직접 사용 및 개발 의존성 배치 검사. | 프로젝트 가상환경의 설치 메타데이터를 사용한다. 동적 import·플러그인 진입점을 검토한다. |
-| <a id="vulture"></a>[Vulture](https://github.com/jendrikseipp/vulture) | [MIT](https://github.com/jendrikseipp/vulture/blob/main/LICENSE.txt) | 미사용 Python 코드 후보 탐지. | confidence는 실측 정확도나 안전 삭제 확률이 아니다. getattr·데코레이터·플러그인 사용은 검토한다. |
-| <a id="import-linter"></a>[Import Linter](https://github.com/seddonym/import-linter) | [BSD-2-Clause](https://github.com/seddonym/import-linter/blob/main/LICENSE) | 계층·금지 import·독립 모듈의 아키텍처 계약 검사. | 의도한 모듈 경계를 직접 정의한다. 모든 import 관계를 일괄 금지하지 않는다. |
-| <a id="pip-audit"></a>[pip-audit](https://github.com/pypa/pip-audit) | [Apache-2.0](https://github.com/pypa/pip-audit/blob/main/LICENSE) | Python 의존성의 알려진 취약점 감사. | OSV-Scanner와 중복 영역을 확인한다. 소스 보안 패턴 분석과는 다르다. |
-| <a id="bandit"></a>[Bandit](https://github.com/PyCQA/bandit) | [Apache-2.0](https://github.com/PyCQA/bandit/blob/main/LICENSE) | Python AST 기반 보안 문제 패턴 검사. | Ruff의 보안 규칙과 고유 진단·중복을 비교해 추가한다. |
+| <a id="ruff"></a>[Ruff](https://github.com/astral-sh/ruff) | [MIT](https://github.com/astral-sh/ruff/blob/main/LICENSE) | Python 코드의 lint, 포맷, 미사용 import를 검사한다. | 타입 검사, 의존성 분석, 프로젝트 전체의 데드코드 판정을 대신하지 않는다. |
+| <a id="mypy"></a>[mypy](https://github.com/python/mypy) | [MIT](https://github.com/python/mypy/blob/master/LICENSE) | Python 코드의 정적 타입을 검사한다. | 본체의 MIT 라이선스 외에 PSF/BSD 고지가 포함된 구성요소도 확인한다. Pyright와 검사 역할이 겹치므로 필요한 진단과 관리할 설정을 보고 도입 여부를 정한다. |
+| <a id="pyright"></a>[Pyright](https://github.com/microsoft/pyright) | [MIT](https://github.com/microsoft/pyright/blob/main/LICENSE.txt) | Python 코드의 정적 타입을 검사한다. | 별도 제품인 Pylance의 이용 조건과 Pyright의 조건을 구분한다. mypy와 타입 추론 및 진단 결과가 완전히 같지는 않다. |
+| <a id="deptry"></a>[deptry](https://github.com/osprey-oss/deptry) | [MIT](https://github.com/osprey-oss/deptry/blob/main/LICENSE) | 미사용 의존성, 누락된 의존성, 전이 의존성의 직접 사용, 개발 의존성의 배치 문제를 검사한다. | 프로젝트 가상환경의 설치 메타데이터를 사용한다. 동적 import와 플러그인 진입점은 별도로 검토한다. |
+| <a id="vulture"></a>[Vulture](https://github.com/jendrikseipp/vulture) | [MIT](https://github.com/jendrikseipp/vulture/blob/main/LICENSE.txt) | 사용하지 않는 것으로 추정되는 Python 코드를 찾는다. | confidence는 실제 측정한 정확도나 안전하게 삭제할 수 있는 확률이 아니다. getattr, 데코레이터, 플러그인을 통한 사용 여부를 검토한다. |
+| <a id="import-linter"></a>[Import Linter](https://github.com/seddonym/import-linter) | [BSD-2-Clause](https://github.com/seddonym/import-linter/blob/main/LICENSE) | 계층 구조, 금지된 import, 독립 모듈에 관한 아키텍처 계약을 검사한다. | 의도한 모듈 간 경계를 직접 정의한다. 모든 import 관계를 일괄 금지하지는 않는다. |
+| <a id="pip-audit"></a>[pip-audit](https://github.com/pypa/pip-audit) | [Apache-2.0](https://github.com/pypa/pip-audit/blob/main/LICENSE) | Python 의존성에서 알려진 취약점을 검사한다. | OSV-Scanner와 검사 범위가 겹치는 부분을 확인한다. 소스 코드의 보안 패턴을 분석하는 도구와는 역할이 다르다. |
+| <a id="bandit"></a>[Bandit](https://github.com/PyCQA/bandit) | [Apache-2.0](https://github.com/PyCQA/bandit/blob/main/LICENSE) | Python AST를 이용해 보안 문제 패턴을 검사한다. | Ruff의 보안 규칙과 비교해 고유한 진단과 중복되는 진단을 확인한 뒤 추가한다. |
 
 ## Godot / GDScript
 
-| 도구 | 라이선스 원문 | 주요 기능 | 적용 범위 및 주의사항 |
+| 도구 | 라이선스 | 주요 기능 | 조건과 한계 |
 | --- | --- | --- | --- |
-| <a id="gdtoolkit"></a>[gdtoolkit](https://github.com/Scony/godot-gdscript-toolkit) | [MIT](https://github.com/Scony/godot-gdscript-toolkit/blob/master/LICENSE) | gdlint·gdformat·gdparse·gdradon으로 GDScript 스타일·파싱·복잡도 검사. | Godot와 gdtoolkit 버전 계열을 맞춘다. 엔진 실행과 씬 연결 검사는 별도로 수행한다. |
-| <a id="godot-warnings"></a>[Godot GDScript 경고와 엔진 검사](https://github.com/godotengine/godot) | [MIT](https://github.com/godotengine/godot/blob/master/LICENSE.txt) | 엔진 내장 GDScript 진단과 headless 검사 경로. | --check-only는 --script 대상 파싱 검사다. 전체 씬·리소스·시그널 검증 완료로 해석하지 않는다. [문서 1](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/warning_system.html) [문서 2](https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html) |
-| <a id="gut"></a>[GUT](https://github.com/bitwes/Gut) | [MIT](https://github.com/bitwes/Gut/blob/main/addons/gut/LICENSE.md) | Godot GDScript 단위·엔진 테스트 프레임워크. | Godot와 GUT 버전을 맞춘다. 라이선스 파일은 addons/gut/LICENSE.md. gdUnit4와 기본 테스트 역할을 나눈다. |
-| <a id="gdunit4"></a>[gdUnit4](https://github.com/godot-gdunit-labs/gdUnit4) | [MIT](https://github.com/godot-gdunit-labs/gdUnit4/blob/master/LICENSE) | Godot 단위·씬 테스트 프레임워크. | C#은 관련 .NET 통합 구성과 버전 조건을 따로 확인한다. GUT와 중복 도입하지 않고 필요에 맞춰 선택한다. |
+| <a id="gdtoolkit"></a>[gdtoolkit](https://github.com/Scony/godot-gdscript-toolkit) | [MIT](https://github.com/Scony/godot-gdscript-toolkit/blob/master/LICENSE) | gdlint, gdformat, gdparse, gdradon으로 GDScript의 스타일, 파싱, 복잡도를 검사한다. | Godot와 gdtoolkit의 버전 계열을 맞춘다. 엔진 실행과 씬 연결 검사는 별도로 수행한다. |
+| <a id="godot-warnings"></a>[Godot GDScript 경고와 엔진 검사](https://github.com/godotengine/godot) | [MIT](https://github.com/godotengine/godot/blob/master/LICENSE.txt) | 엔진에 내장된 GDScript 진단 기능과 headless 검사 경로를 제공한다. | --check-only는 --script로 지정한 파일의 파싱만 검사한다. 전체 씬, 리소스, 시그널까지 검증했다고 해석해서는 안 된다. [문서 1](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/warning_system.html) [문서 2](https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html) |
+| <a id="gut"></a>[GUT](https://github.com/bitwes/Gut) | [MIT](https://github.com/bitwes/Gut/blob/main/addons/gut/LICENSE.md) | Godot GDScript의 단위 테스트와 엔진 테스트를 실행하는 프레임워크다. | Godot와 GUT 버전을 맞춘다. 라이선스 파일은 addons/gut/LICENSE.md에 있다. gdUnit4와 기본 테스트 역할을 나누어 사용한다. |
+| <a id="gdunit4"></a>[gdUnit4](https://github.com/godot-gdunit-labs/gdUnit4) | [MIT](https://github.com/godot-gdunit-labs/gdUnit4/blob/master/LICENSE) | Godot의 단위 테스트와 씬 테스트를 실행하는 프레임워크다. | C#에서는 관련 .NET 통합 설정과 버전 조건을 별도로 확인한다. GUT를 이미 사용한다면 추가로 필요한 기능과 겹치는 테스트를 확인한다. |
 
-## 테스트 탐지력
+## 테스트가 결함을 찾는지 확인
 
-| 도구 | 라이선스 원문 | 주요 기능 | 적용 범위 및 주의사항 |
+| 도구 | 라이선스 | 주요 기능 | 조건과 한계 |
 | --- | --- | --- | --- |
-| <a id="stryker"></a>[StrykerJS / Stryker.NET](https://github.com/stryker-mutator/stryker-js) | [Apache-2.0](https://github.com/stryker-mutator/stryker-js/blob/master/LICENSE) | 코드를 변형해 테스트가 결함을 찾아내는지 확인하는 mutation testing 도구다. | JS/TS와 일반 .NET 기준. Unity 전체 프로젝트 호환성을 검증하지 않았다. 실행 비용 때문에 핵심 로직부터 적용한다. [문서 1](https://github.com/stryker-mutator/stryker-net) [문서 2](https://stryker-mutator.io/docs/) |
+| <a id="stryker"></a>[StrykerJS / Stryker.NET](https://github.com/stryker-mutator/stryker-js) | [Apache-2.0](https://github.com/stryker-mutator/stryker-js/blob/master/LICENSE) | 코드를 변형해 테스트가 결함을 찾아내는지 확인하는 mutation testing 도구다. | JS/TS와 일반 .NET 환경을 기준으로 하며 Unity 전체 프로젝트와의 호환성은 검증하지 않았다. 실행 비용을 고려해 핵심 로직부터 적용한다. [문서 1](https://github.com/stryker-mutator/stryker-net) [문서 2](https://stryker-mutator.io/docs/) |
 
-라이선스 원문 조회 기록은 [license-evidence.json](../data/license-evidence.json), 분류 원본은 [catalog.json](../data/catalog.json)에 있다. 메인 라이선스만으로 바이너리·전이 의존성·모델 API·DB까지 허용됐다고 판단하지 않는다.
+[라이선스 조회 기록](../data/license-evidence.json)과 [분류 원본](../data/catalog.json)을 함께 볼 수 있다. JSON의 `multi`는 여러 언어를 다룬다는 뜻이며 언어마다 지원 범위는 다를 수 있다. 도구 본체의 라이선스만으로 배포 바이너리, 간접 의존성, 모델 API, DB의 조건까지 확인한 것은 아니다.

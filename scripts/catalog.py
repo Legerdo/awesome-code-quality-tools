@@ -179,9 +179,9 @@ def render(data: dict, evidence: list) -> dict[str, str]:
 [![Catalog CI]({root_url}/actions/workflows/catalog.yml/badge.svg)]({root_url}/actions/workflows/catalog.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-상업용 프로젝트에 사용할 코드 품질 검사기와 코드 탐색 도구를 개발 환경별로 정리한 목록이다. MIT, Apache-2.0, BSD, ISC처럼 라이선스 조건이 비교적 단순한 오픈소스를 우선 소개한다.
+게임, 앱, 웹, 서버 프로젝트에서 쓸 코드 품질 도구를 모았다. 코드 검사기부터 의존성 관리, 코드 그래프까지 개발 환경별로 찾아볼 수 있다. 라이선스 검토 부담을 줄이기 위해 MIT, Apache-2.0, BSD, ISC 계열을 우선한다.
 
-**수록 범위:** 개발 환경 {len(data['profiles'])}개, 일반 추천 도구 {count['permissive']}개, 엔진 및 SDK 제공 기능 {count['engine-exception']}개. 추천에서 제외한 도구 {count['excluded']}개도 이유와 대안을 기록했다.
+개발 환경 {len(data['profiles'])}개를 다룬다. 일반 추천 도구 {count['permissive']}개와 엔진 및 SDK 제공 기능 {count['engine-exception']}개를 수록했고, 제외한 도구 {count['excluded']}개의 이유도 남겼다.
 
 **자료 확인일:** {data['reviewed_on']}. 공식 문서와 라이선스 원문을 검토한 목록이다. 도구의 실제 실행, 탐지 정확도, 배포물의 전체 라이선스는 검증하지 않았다.
 
@@ -190,24 +190,21 @@ def render(data: dict, evidence: list) -> dict[str, str]:
 - [개발 환경별 추천](#quick-start)
 - [코드 그래프와 AI 탐색](#graphs)
 - [공통 품질 검사와 보안 도구](#common)
+- [AI 에이전트로 활용하기](#agents)
 - [라이선스 선정 기준](#selection)
 - [자료 관리와 검증](#verification)
 - **추가 자료:** [전체 도구 목록](docs/TOOLS.md), [스택별 상세 가이드](docs/PROFILES.md), [추천 제외 이력](docs/EXCLUDED.md)
 
-## 도구 선택 전에
+## 읽는 방법
 
-코드 탐색 도구와 품질 검사기는 역할이 다르다.
+개발 환경별 표에서 도구를 찾고, 상세 가이드에서 필요한 설정과 한계를 확인한다. 표는 모두 설치하라는 뜻이 아니다. 기존 검사와 겹치는 기능, 새로 확인할 문제를 기준으로 구성을 정한다.
 
-- **코드 그래프:** 심볼, 호출 관계, 변경 영향을 탐색한다. 코드가 실제로 사용되는지 또는 수정이 안전한지를 단독으로 증명하지는 못한다.
-- **정적 검사:** 미사용 코드와 의존성, 코딩 규칙, 아키텍처 위반 등을 찾는다. 빌드나 실행 테스트를 대신하지 않는다.
-- **빌드 및 테스트:** 지정된 설정과 입력에서 동작을 확인한다. 실행하지 않은 경로까지 검증한 것은 아니다.
-
-표에 나온 도구는 **도입 후보**다. 같은 역할의 도구를 모두 설치하기보다 프로젝트에 맞는 것부터 선택하는 편이 낫다.
+코드 그래프는 구조와 참조를 찾고, 정적 검사기는 코드와 의존성의 문제를 찾는다. 실제 동작은 빌드와 테스트로 확인해야 한다. 어느 한 검사도 확인하지 않은 경로의 안전성까지 보장하지 않는다.
 
 <a id="quick-start"></a>
 ## 개발 환경별 추천
 
-먼저 검토할 도구만 추렸다. 추가 검사기와 대체 도구, 엔진별 주의사항은 각 개발 환경의 링크에서 확인할 수 있다. 이름 뒤의 **(엔진/SDK 제공)** 표시는 일반 오픈소스와 사용 조건이 다를 수 있다는 뜻이다.
+각 환경의 기본 조합이다. 개발 환경 이름을 누르면 추가 도구와 설정 조건을 볼 수 있다. **(엔진/SDK 제공)** 기능은 해당 제품의 사용 조건을 따라야 한다.
 
 """
     readme += table(["개발 환경", "먼저 살펴볼 도구"], [
@@ -222,7 +219,7 @@ Godot의 GDScript는 CodeGraph의 확인된 지원 언어에 포함되지 않는
 <a id="graphs"></a>
 ## 코드 그래프와 AI 탐색
 
-이 목록에서 **CodeGraph**는 [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph)를 가리킨다. CodeGraphContext는 다른 프로젝트다. 그래프 조회 결과와 AI가 생성한 설명은 구분해서 확인해야 한다.
+**CodeGraph**는 [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph)다. CodeGraphContext와 이름은 비슷하지만 다른 프로젝트다. AI가 만든 설명을 실제 코드의 참조 관계와 같다고 보지는 않는다.
 
 """
     readme += compact([t for t in tools if t["category"] == "graph" and t["status"] == "permissive"])
@@ -237,41 +234,61 @@ Godot의 GDScript는 CodeGraph의 확인된 지원 언어에 포함되지 않는
     readme += compact([t for t in tools if t["category"] in {"common", "testing"} and t["status"] == "permissive"])
     readme += """
 
+<a id="agents"></a>
+
+## AI 에이전트로 활용하기
+
+도구를 고르거나 이 목록을 관리할 때 쓸 스킬을 함께 제공한다. [AGENTS.md](AGENTS.md)에 작업 규칙을, [에이전트 안내](docs/AGENT-GUIDE.md)에 사용 예시를 정리했다.
+
+| 스킬 | 용도 |
+| --- | --- |
+| [choose-quality-tools](.agents/skills/choose-quality-tools/SKILL.md) | 프로젝트 설정을 읽고 검사 도구와 검증 방법을 제안한다. |
+| [maintain-quality-catalog](.agents/skills/maintain-quality-catalog/SKILL.md) | 공식 근거를 확인해 도구 정보와 추천 구성을 갱신한다. |
+| [edit-korean-docs](.agents/skills/edit-korean-docs/SKILL.md) | 기능과 조건을 유지하면서 한국어 문장과 Markdown을 다듬는다. |
+
+필요한 항목만 읽으려면 저장소 루트에서 다음 명령을 실행한다. 도구를 설치하거나 프로젝트 코드를 검사하는 명령은 아니다.
+
+```powershell
+python scripts/query_catalog.py --profile typescript-web
+python scripts/query_catalog.py --tool fallow
+```
+
 <a id="selection"></a>
 ## 라이선스 선정 기준
 
 - **우선 추천:** MIT, Apache-2.0, BSD, ISC 등 사용 조건이 비교적 단순한 라이선스의 도구.
 - **별도 표시:** Unreal, Unity, Android에서 제공하는 엔진 및 SDK 기능. 해당 제품의 사용 조건을 따라야 한다.
-- **추천 제외:** 비상업 용도로 제한되거나, 별도 유료 계약이 필요하거나, 현재 유지보수 상태가 달라진 도구. GPL, LGPL, AGPL 도구도 보수적으로 제외한다.
+- **추천 제외:** 비상업 제한, 별도 유료 계약, 구버전 유지보수 부담 등으로 기본 목록에서 뺀 도구. GPL, LGPL, AGPL도 제외한다.
 
 **GPL, LGPL, AGPL이 상업적 사용을 금지하는 것은 아니다.** 다만 수정본 배포나 결합 방식에 따라 추가 의무가 생길 수 있어 기본 추천에서 제외했다.
 
-Fallow는 MIT 라이선스의 정적 분석 코어, Gitleaks는 MIT 라이선스의 CLI, Graphify는 오픈소스 패키지만 포함한다. 연동 DB, 룰팩, GitHub Action, 호스팅 서비스 등은 별도 조건을 확인해야 한다.
+Fallow는 MIT 라이선스의 정적 분석 기능, Gitleaks는 MIT 라이선스의 CLI, Graphify는 오픈소스 패키지만 포함한다. 연동 DB, 룰팩, GitHub Action, 호스팅 서비스 등은 별도 조건을 확인해야 한다.
 
 [선정 기준과 라이선스 원문](docs/LICENSE-POLICY.md) 및 [추천 제외 사유](docs/EXCLUDED.md)에 자세히 정리했다.
 
 <a id="verification"></a>
 ## 자료 관리와 검증
 
-도구 정보와 추천 조합은 [data/catalog.json](data/catalog.json)에서 관리한다. README와 상세 문서는 [scripts/catalog.py](scripts/catalog.py)로 생성한다. 문서의 문구나 배치를 바꾸려면 생성기를 수정해야 한다.
+도구 설명과 추천 조합은 [data/catalog.json](data/catalog.json)이 원본이다. README와 상세표는 [scripts/catalog.py](scripts/catalog.py)로 만든다. 생성된 문서만 직접 고치면 다음 생성 때 덮어써지므로 원본부터 수정한다.
 
-[라이선스 근거 기록](data/license-evidence.json)에는 확인한 파일 경로, Git blob SHA, 조회 시점을 남겼다. CI는 라이선스 분류, 제외 도구의 재유입, 언어별 추천, 내부 링크, 생성 문서와 데이터의 일치 여부를 검사한다. 외부 링크의 가용성과 수록 도구의 실행 성능은 검사하지 않는다.
+[라이선스 조회 기록](data/license-evidence.json)에는 파일 경로, Git blob SHA, 확인 시점을 남겼다. CI는 목록과 문서가 일치하는지, 제외한 도구가 추천에 다시 들어갔는지, 링크와 스킬 형식에 문제가 없는지 검사한다. 수록 도구의 성능이나 에이전트의 실제 행동까지 시험하지는 않는다.
 
 ```powershell
 python scripts/catalog.py --write
 python scripts/catalog.py --check
+python scripts/check_skills.py
 python -m unittest discover -s tests -v
 ```
 
-수정 및 추가 방법은 [기여 안내](CONTRIBUTING.md), 검증 범위는 [검증 안내](docs/VERIFICATION.md)를 참고하면 된다. 생성 및 검사는 Python 3.13 표준 라이브러리만 사용하며 Windows와 Ubuntu에서 CI를 실행한다.
+Python 3.13 표준 라이브러리만 사용하며 Windows와 Ubuntu에서 CI를 실행한다. 변경 절차는 [기여 안내](CONTRIBUTING.md), 문장 편집은 [작성 기준](docs/WRITING.md), 검사 범위는 [검증 안내](docs/VERIFICATION.md)를 참고한다.
 
 ## 라이선스
 
-이 저장소에서 작성한 문서, 데이터, 검사 스크립트에는 [MIT 라이선스](LICENSE)를 적용한다. 소개한 도구에는 각 프로젝트의 라이선스가 적용된다. 이 목록은 법률 자문이나 개별 배포물의 라이선스 적합성 인증이 아니다.
+이 저장소에서 작성한 문서, 데이터, 스킬과 검사 스크립트에는 [MIT 라이선스](LICENSE)를 적용한다. 소개한 도구에는 각 프로젝트의 라이선스가 적용된다. 이 목록은 법률 자문이나 개별 배포물의 라이선스 적합성 인증이 아니다.
 """
 
     inventory = "<!-- Generated by scripts/catalog.py. -->\n# 전체 도구 상세표\n\n- [README로 돌아가기](../README.md)\n- [라이선스 정책](LICENSE-POLICY.md)\n- [추천 제외 이력](EXCLUDED.md)\n\n"
-    inventory += "공식 문서를 바탕으로 선정한 후보이며 실제 실행, 성능, 오탐률은 검증하지 않았다. `multi`는 여러 언어를 지원한다는 뜻이지 모든 언어를 같은 수준으로 분석한다는 뜻은 아니다. 이름 뒤의 (엔진/SDK 제공) 표시는 제품별 사용 조건이 적용되는 기능이다. 라이선스 링크는 확인한 상위 원문으로 연결한다.\n\n"
+    inventory += "공식 문서를 읽고 정리한 목록이다. 실제 실행, 성능, 오탐률은 검증하지 않았다. 라이선스를 누르면 확인한 원문을 볼 수 있다. (엔진/SDK 제공) 기능은 해당 제품의 사용 조건을 따른다.\n\n"
     for group, title in data["categories"].items():
         selected = [t for t in tools if t["category"] == group and t["status"] != "excluded"]
         if not selected:
@@ -281,31 +298,31 @@ python -m unittest discover -s tests -v
         for t in selected:
             sources = " ".join(f"[문서 {i + 1}]({url})" for i, url in enumerate(t.get("sources", [])))
             rows.append([f'<a id="{t["id"]}"></a>' + tool_link(t), license_link(t, ev), t["summary"], t["limitations"] + (" " + sources if sources else "")])
-        inventory += table(["도구", "라이선스 원문", "주요 기능", "적용 범위 및 주의사항"], rows) + "\n\n"
-    inventory += "라이선스 원문 조회 기록은 [license-evidence.json](../data/license-evidence.json), 분류 원본은 [catalog.json](../data/catalog.json)에 있다. 메인 라이선스만으로 바이너리·전이 의존성·모델 API·DB까지 허용됐다고 판단하지 않는다.\n"
+        inventory += table(["도구", "라이선스", "주요 기능", "조건과 한계"], rows) + "\n\n"
+    inventory += "[라이선스 조회 기록](../data/license-evidence.json)과 [분류 원본](../data/catalog.json)을 함께 볼 수 있다. JSON의 `multi`는 여러 언어를 다룬다는 뜻이며 언어마다 지원 범위는 다를 수 있다. 도구 본체의 라이선스만으로 배포 바이너리, 간접 의존성, 모델 API, DB의 조건까지 확인한 것은 아니다.\n"
 
     profiles = "<!-- Generated by scripts/catalog.py. -->\n# 스택별 구성 가이드\n\n- [README로 돌아가기](../README.md)\n- [전체 도구 목록](TOOLS.md)\n\n"
-    profiles += "Windows 11과 PowerShell을 기준으로 정리했다. 설치 명령은 특정 버전에서 검증한 것이 아니다. 빌드, 타입 검사, 린트, 테스트를 각각 기록하고 프로젝트 호환성과 기능 중복을 확인한 뒤 도구를 추가한다.\n\n"
+    profiles += "Windows 11과 PowerShell 사용을 고려한 구성 안내다. 아래 조합의 설치와 프로젝트 호환성을 직접 시험한 것은 아니다. 기본 검사부터 확인하고 필요한 도구를 더한다. 빌드, 타입 검사, 린트, 테스트의 결과는 각각 기록한다.\n\n"
     for p in data["profiles"]:
         profiles += f'<a id="{p["id"]}"></a>\n## {p["name"]}\n\n'
         profiles += table(["역할", "후보"], [["우선 검토", links(p["base"])], ["추가 또는 대체", links(p["optional"])], ["코드 탐색", links(p["navigation"])]])
         profiles += "\n\n" + p["notes"] + "\n\n"
     profiles += "## 단계별 적용\n\n"
     profiles += table(["단계", "작업", "확인할 결과"], [
-        ["1. 기존 기준 확보", "현재 빌드·테스트와 버전·작업 디렉터리 기록", "기존 실패와 새 검사 실패 구분"],
-        ["2. 검사기 하나 도입", "기본 규칙·범위·진입점 설정", "알려진 결함을 잡고 정상 동적 경로는 보존"],
-        ["3. CI 연결", "도구별 종료 코드·예외·baseline 명시", "누락·timeout·partial을 PASS로 처리하지 않음"],
-        ["4. 구조 검사 추가", "계층·순환·의존성 정책 정의", "규칙 위반을 재현 가능한 실패로 판정"],
-        ["5. 탐색 도구 추가", "필요한 그래프만 인덱싱", "탐색 결과와 품질 게이트의 책임 분리"]
+        ["1. 현재 상태 기록", "빌드와 테스트 결과, 버전, 작업 디렉터리를 남긴다.", "기존 문제와 새 검사에서 발견한 문제를 구분한다."],
+        ["2. 작은 범위에서 검사", "규칙, 대상 파일, 진입점을 설정한다.", "알려진 결함을 찾고 정상적인 동적 참조는 보존한다."],
+        ["3. CI 연결", "종료 코드, 예외, 기존 문제 목록인 baseline을 정한다.", "누락, 시간 초과, 일부 파일만 검사한 결과를 통과로 처리하지 않는다."],
+        ["4. 구조 검사 추가", "계층, 순환 참조, 의존성 규칙을 정한다.", "규칙을 어긴 변경이 실제로 검사에 실패하는지 확인한다."],
+        ["5. 코드 탐색 연결", "필요한 코드 그래프를 만든다.", "탐색 결과와 CI의 합격 판정을 구분한다."]
     ]) + "\n"
 
     excluded = "<!-- Generated by scripts/catalog.py. -->\n# 추천 제외 이력\n\n- [README로 돌아가기](../README.md)\n- [라이선스 선정 기준](LICENSE-POLICY.md)\n\n"
     excluded += "이 페이지에 있는 도구는 기본 추천에서 제외했다. 상업적 사용이 불법이라는 뜻은 아니다. 제외 이유와 대체 후보를 기록했으며, 대체 도구가 같은 기능이나 탐지 정확도를 보장하지는 않는다.\n\n"
     excluded += table(["도구", "라이선스와 상태", "제외 이유 및 참고 사항", "대체 후보"], [
-        [tool_link(t), license_link(t, ev), t["limitations"], links(t.get("alternatives", [])) or "동등한 대체 미확인"]
+        [tool_link(t), license_link(t, ev), t["limitations"], links(t["alternatives"]) if t.get("alternatives") else "확인한 대체 도구 없음"]
         for t in tools if t["status"] == "excluded"
     ])
-    excluded += "\n\nPeriphery의 과거 MIT 코드와 Serena의 과거 MIT 릴리스/SolidLSP는 사용권이 소급 취소됐다는 의미가 아니다. 이 저장소는 과거 버전을 대신 유지보수하는 운영 부담까지 고려해 새 기본 조합에서는 제외했다.\n\n"
+    excluded += "\n\nPeriphery의 과거 MIT 코드나 Serena의 과거 MIT 릴리스, SolidLSP의 사용권이 소급 취소됐다는 뜻은 아니다. 구버전을 계속 관리해야 하는 부담도 고려해 새 프로젝트의 기본 추천에서는 뺐다.\n\n"
     excluded += "## 주요 정책 원문\n\n"
     for t in tools:
         if t["status"] == "excluded":

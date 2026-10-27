@@ -1,31 +1,45 @@
-# 기여 방법
+# 목록에 기여하기
 
-이 저장소는 도구 수보다 **정확한 역할·근거·도입 조건**을 우선한다. 한국어 설명을 기본으로 하며 제품명과 공식 기술 용어는 원문을 유지한다.
+도구를 추가하거나 설명을 고칠 때는 기능, 라이선스, 사용 조건의 근거를 함께 남긴다. 한국어 문장은 [작성 기준](docs/WRITING.md)을 따른다. AI 에이전트로 작업할 때는 [AGENTS.md](AGENTS.md)를 먼저 읽는다.
 
-## 도구 추가·수정
+## 어디를 수정하나
 
-1. `data/catalog.json`에 ID, 이름, 언어, 분류, 본체 라이선스, 기능, 한계, 공식 출처를 기록한다. 설치·실행하지 않은 도구를 실동작 검증 완료로 표시하지 않는다.
-2. 실제 LICENSE 또는 해당 패키지 조건을 확인한다. GitHub 배지나 `NOASSERTION`만으로 판정하지 않는다. 본체·룰팩·DB·Action·모델 API는 별도다.
-3. GitHub 프로젝트는 `data/license-evidence.json`에 원문 URL, blob SHA, 조회 시점 및 필요할 경우 `review_note`를 남긴다. 새 도구의 라이선스가 불명확하면 추천에 넣지 않는다.
-4. 관련 프로필에 추가하되 지원 언어를 과장하지 않는다. 같은 역할의 대안을 모두 필수로 두지 않는다. 제외 도구는 프로필에 참조할 수 없다.
-5. 기준일을 갱신하고 아래 명령을 실행한다. 생성 파일을 직접 고치지 않는다.
+| 바꿀 내용 | 수정할 파일 |
+| --- | --- |
+| 도구 정보와 개발 환경별 구성 | `data/catalog.json` |
+| 라이선스 조회 기록 | `data/license-evidence.json` |
+| 라이선스 허용 목록과 엔진 예외 | `data/policy.json` |
+| README와 상세표의 고정 문구, 배치 | `scripts/catalog.py`의 `render()` |
+| 스킬과 그 밖의 문서 | 해당 Markdown 파일 |
 
-README나 상세 문서의 문장과 표 구성을 바꾸려면 `scripts/catalog.py`의 생성 부분을 수정한다. 도구 설명과 프로필은 `data/catalog.json`에서 관리한다. 변경한 내용은 문서 재생성 후 확인한다.
+`README.md`, `docs/TOOLS.md`, `docs/PROFILES.md`, `docs/EXCLUDED.md`는 생성 파일이다. 이 파일만 고치면 다음 생성 때 변경이 사라진다.
+
+## 도구 추가 또는 정보 갱신
+
+1. 공식 저장소와 문서를 읽고 ID, 이름, 분석 대상 언어, 기능, 한계, 출처를 기록한다. 설치하거나 실행하지 않았다면 문서만 확인했다고 적는다.
+2. LICENSE나 실제 사용할 패키지의 조건을 확인한다. 본체, 룰팩, DB, CI Action, 모델 API, 유료 기능을 구분한다.
+3. GitHub 프로젝트는 라이선스 원문 URL, blob SHA, 조회 시점을 남긴다. 조건이 불명확하면 확인 전까지 추천에 넣지 않는다.
+4. 관련 개발 환경의 목록을 갱신한다. 함께 쓸 수 있는 도구를 하나만 골라야 하는 것처럼 표시하지 않는다. 제외 도구는 추천 목록에 넣지 않는다.
+5. 아래 검사를 실행하고 생성된 문서까지 확인한다. 전체 목록을 다시 검토하지 않았다면 전체 확인 날짜를 바꾸지 않는다.
 
 ```powershell
 python scripts/catalog.py --write
 python scripts/catalog.py --check
+python scripts/check_skills.py
 python -m unittest discover -s tests -v
+git diff --check
 ```
 
-## 원문 기록 방법
+## 라이선스 근거
 
-GitHub에서 원하는 LICENSE를 열고 해당 파일의 blob SHA를 확인한다. `gh api repos/OWNER/REPO/license` 또는 정확한 파일의 Contents API를 사용할 수 있다. 기본 LICENSE가 없는 프로젝트는 패키지 내부의 파일을 찾아야 한다.
+GitHub에서 LICENSE를 열고 파일의 blob SHA를 확인한다. `gh api repos/OWNER/REPO/license`나 해당 파일의 Contents API를 사용할 수 있다. 루트에 LICENSE가 없으면 패키지 내부도 확인한다.
 
-`github_detection`은 GitHub의 자동 인식 결과일 뿐이다. null/NOASSERTION인 경우 직접 읽은 결과를 `review_note`로 기록한다. 라이선스 예외·복수 라이선스는 원문 표현을 확인하고 선택한 도입 범위를 설명한다.
+`github_detection`은 GitHub의 자동 인식 결과다. `null` 또는 `NOASSERTION`이면 원문을 읽고 `review_note`에 판단 이유를 적는다. 예외나 복수 라이선스는 원문의 선택 조건을 유지한다.
 
-## 정책·검증기 변경
+## 문장과 검사 코드
 
-`data/policy.json`, `scripts/`, `tests/`, `.github/workflows/` 변경은 통과시키기 위한 우회가 아니어야 한다. 변경 이유와 영향, 기존 negative fixture가 계속 실패하는지를 PR에 적는다. 기준 완화와 도구 추가를 한 문장으로 숨기지 않는다.
+문장만 고칠 때는 도구 ID, URL, 라이선스, 지원 언어, 추천 관계, 수치, 확인 날짜를 유지한다. [edit-korean-docs 스킬](.agents/skills/edit-korean-docs/SKILL.md)에 대조할 항목을 정리했다.
 
-외부 링크를 가리키는 목록을 유지하며, 제3자 README 전체·바이너리·비밀정보·개인 프로젝트 설정을 복사하지 않는다. 기여한 문서·데이터·코드는 이 저장소의 [MIT 라이선스](LICENSE)로 제공된다. 링크한 프로젝트의 권리는 원저작자에게 남는다.
+정책이나 검사를 바꾸는 수정은 일반 목록 수정과 구분해서 설명한다. 테스트를 빼거나 기준을 낮춰서 통과시키지 않는다. 기존 실패 사례가 여전히 거부되는지 확인한다.
+
+제3자 README 전체, 바이너리, 비밀정보, 개인 프로젝트 설정은 복사하지 않는다. 기여한 문서, 데이터, 스킬과 코드는 이 저장소의 [MIT 라이선스](LICENSE)로 제공되며 외부 프로젝트의 권리는 원저작자에게 남는다.

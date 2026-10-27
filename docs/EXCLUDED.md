@@ -8,18 +8,18 @@
 
 | 도구 | 라이선스와 상태 | 제외 이유 및 참고 사항 | 대체 후보 |
 | --- | --- | --- | --- |
-| [Serena](https://github.com/oraios/serena) | [GPL-3.0-or-later](https://github.com/oraios/serena/blob/main/LICENSE) | v2 이후 애플리케이션은 GPL. SolidLSP와 과거 MIT 릴리스는 별개다. 상업 이용 금지가 아니라 본 저장소의 copyleft 제외 정책에 따른 제외. | [CodeGraph](https://github.com/colbymchenry/codegraph) |
-| [GitNexus](https://github.com/abhigyanpatwari/GitNexus) | [PolyForm-Noncommercial-1.0.0](https://github.com/abhigyanpatwari/GitNexus/blob/main/LICENSE) | 비상업 조건이 있는 배포판을 기본 추천에서 제외한다. | [CodeGraph](https://github.com/colbymchenry/codegraph), [CodeGraphContext](https://github.com/CodeGraphContext/CodeGraphContext) |
-| [Semgrep Community Edition](https://github.com/semgrep/semgrep) | [LGPL-2.1; separate rules license](https://github.com/semgrep/semgrep/blob/develop/LICENSE) | 엔진과 Semgrep 제공 규칙 세트의 조건이 다르다. copyleft 및 별도 제한 규칙 관리 부담 때문에 제외. | [ast-grep](https://github.com/ast-grep/ast-grep) |
-| [MegaLinter](https://github.com/oxsecurity/megalinter) | [AGPL-3.0](https://github.com/oxsecurity/megalinter/blob/main/LICENSE) | AGPL 및 번들 린터별 라이선스 검토 부담 때문에 기본 추천에서 제외. | [Lefthook](https://github.com/evilmartians/lefthook) |
-| [SonarQube Community Build](https://github.com/SonarSource/sonarqube) | [LGPL-3.0; SSAL analyzers](https://github.com/SonarSource/sonarqube/blob/master/LICENSE.txt) | 서버와 번들 분석기의 라이선스를 분리해야 한다. 개별 분석기 결과를 자체 CI에서 수집하는 방식을 우선한다. | 없음 |
-| [Cppcheck](https://github.com/cppcheck-opensource/cppcheck) | [GPL-3.0](https://github.com/cppcheck-opensource/cppcheck/blob/main/COPYING) | copyleft 검토 부담을 줄이기 위한 정책상 제외. clang-tidy가 모든 진단을 동일하게 대체하는 것은 아니다. | [clang-tidy](https://github.com/llvm/llvm-project) |
-| [SpotBugs](https://github.com/spotbugs/spotbugs) | [LGPL-2.1](https://github.com/spotbugs/spotbugs/blob/master/LICENSE) | copyleft 검토 부담 때문에 제외. Error Prone과 분석 방식이 달라 완전한 기능 대체가 아니다. | [Error Prone](https://github.com/google/error-prone) |
-| [Periphery](https://github.com/peripheryapp/periphery) | [MIT archived OSS; commercial successor](https://github.com/peripheryapp/periphery/blob/master/LICENSE.md) | MIT 구판의 상업 사용 금지가 아니다. OSS 보관 및 후속 제품 상용 전환 때문에 새 기본 도입에서 제외. SwiftLint는 동등한 데드코드 분석 대체가 아니다. | 없음 |
-| [DCM](https://dcm.dev/) | [Proprietary subscription](https://dcm.dev/pricing/) | 별도 상용 라이선스·구독 조건 때문에 제외한다. | [Dart analyzer / flutter analyze](https://github.com/dart-lang/sdk), [Dart Code Linter](https://github.com/bancolombia/dart-code-linter), [dependency_validator](https://pub.dev/packages/dependency_validator) |
-| [golangci-lint](https://github.com/golangci/golangci-lint) | [GPL-3.0](https://github.com/golangci/golangci-lint/blob/main/LICENSE) | copyleft 검토 부담 때문에 제외. go vet와 Staticcheck 등 선택한 분석기를 직접 실행한다. | [Staticcheck](https://github.com/dominikh/go-tools), [govulncheck](https://github.com/golang/vuln) |
+| [Serena](https://github.com/oraios/serena) | [GPL-3.0-or-later](https://github.com/oraios/serena/blob/main/LICENSE) | v2 이후 애플리케이션은 GPL이며 SolidLSP와 과거 MIT 릴리스는 별개다. 상업적 이용 금지 때문이 아니라 이 저장소의 copyleft 제외 정책에 따라 제외했다. | [CodeGraph](https://github.com/colbymchenry/codegraph) |
+| [GitNexus](https://github.com/abhigyanpatwari/GitNexus) | [PolyForm-Noncommercial-1.0.0](https://github.com/abhigyanpatwari/GitNexus/blob/main/LICENSE) | 비상업 조건이 있는 배포판이므로 기본 추천에서 제외한다. | [CodeGraph](https://github.com/colbymchenry/codegraph), [CodeGraphContext](https://github.com/CodeGraphContext/CodeGraphContext) |
+| [Semgrep Community Edition](https://github.com/semgrep/semgrep) | [LGPL-2.1; separate rules license](https://github.com/semgrep/semgrep/blob/develop/LICENSE) | 엔진과 Semgrep이 제공하는 규칙 세트의 이용 조건이 다르다. copyleft 및 별도 제한 규칙을 관리해야 하는 부담 때문에 제외했다. | [ast-grep](https://github.com/ast-grep/ast-grep) |
+| [MegaLinter](https://github.com/oxsecurity/megalinter) | [AGPL-3.0](https://github.com/oxsecurity/megalinter/blob/main/LICENSE) | AGPL과 포함된 린터 각각의 라이선스를 검토해야 하므로 기본 추천에서 제외했다. | [Lefthook](https://github.com/evilmartians/lefthook) |
+| [SonarQube Community Build](https://github.com/SonarSource/sonarqube) | [LGPL-3.0; SSAL analyzers](https://github.com/SonarSource/sonarqube/blob/master/LICENSE.txt) | 서버와 포함된 분석기의 라이선스를 구분해야 한다. 이 목록에서는 개별 분석기의 결과를 자체 CI에서 수집하는 방식을 우선한다. | 확인한 대체 도구 없음 |
+| [Cppcheck](https://github.com/cppcheck-opensource/cppcheck) | [GPL-3.0](https://github.com/cppcheck-opensource/cppcheck/blob/main/COPYING) | copyleft 검토 부담을 줄이는 정책에 따라 제외했다. clang-tidy가 모든 진단을 똑같이 대체하지는 않는다. | [clang-tidy](https://github.com/llvm/llvm-project) |
+| [SpotBugs](https://github.com/spotbugs/spotbugs) | [LGPL-2.1](https://github.com/spotbugs/spotbugs/blob/master/LICENSE) | copyleft 검토 부담 때문에 제외했다. Error Prone과는 분석 방식이 다르므로 기능이 완전히 대체되지는 않는다. | [Error Prone](https://github.com/google/error-prone) |
+| [Periphery](https://github.com/peripheryapp/periphery) | [MIT archived OSS; commercial successor](https://github.com/peripheryapp/periphery/blob/master/LICENSE.md) | 과거 MIT 버전의 상업적 이용이 금지된 것은 아니다. OSS 프로젝트가 보관되고 후속 제품이 상용으로 전환되어 새 기본 도입 대상에서 제외했다. SwiftLint는 동등한 데드코드 분석 기능을 제공하지 않는다. | 확인한 대체 도구 없음 |
+| [DCM](https://dcm.dev/) | [Proprietary subscription](https://dcm.dev/pricing/) | 별도의 상용 라이선스와 구독 조건 때문에 제외한다. | [Dart analyzer / flutter analyze](https://github.com/dart-lang/sdk), [Dart Code Linter](https://github.com/bancolombia/dart-code-linter), [dependency_validator](https://pub.dev/packages/dependency_validator) |
+| [golangci-lint](https://github.com/golangci/golangci-lint) | [GPL-3.0](https://github.com/golangci/golangci-lint/blob/main/LICENSE) | copyleft 검토 부담 때문에 제외했다. go vet와 Staticcheck 등 필요한 분석기를 직접 실행한다. | [Staticcheck](https://github.com/dominikh/go-tools), [govulncheck](https://github.com/golang/vuln) |
 
-Periphery의 과거 MIT 코드와 Serena의 과거 MIT 릴리스/SolidLSP는 사용권이 소급 취소됐다는 의미가 아니다. 이 저장소는 과거 버전을 대신 유지보수하는 운영 부담까지 고려해 새 기본 조합에서는 제외했다.
+Periphery의 과거 MIT 코드나 Serena의 과거 MIT 릴리스, SolidLSP의 사용권이 소급 취소됐다는 뜻은 아니다. 구버전을 계속 관리해야 하는 부담도 고려해 새 프로젝트의 기본 추천에서는 뺐다.
 
 ## 주요 정책 원문
 

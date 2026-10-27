@@ -4,7 +4,7 @@
 - [README로 돌아가기](../README.md)
 - [전체 도구 목록](TOOLS.md)
 
-Windows 11과 PowerShell을 기준으로 정리했다. 설치 명령은 특정 버전에서 검증한 것이 아니다. 빌드, 타입 검사, 린트, 테스트를 각각 기록하고 프로젝트 호환성과 기능 중복을 확인한 뒤 도구를 추가한다.
+Windows 11과 PowerShell 사용을 고려한 구성 안내다. 아래 조합의 설치와 프로젝트 호환성을 직접 시험한 것은 아니다. 기본 검사부터 확인하고 필요한 도구를 더한다. 빌드, 타입 검사, 린트, 테스트의 결과는 각각 기록한다.
 
 <a id="unreal-cpp"></a>
 ## Unreal / C++
@@ -15,7 +15,7 @@ Windows 11과 PowerShell을 기준으로 정리했다. 설치 명령은 특정 �
 | 추가 또는 대체 | [Lizard](https://github.com/terryyin/lizard), [ast-grep](https://github.com/ast-grep/ast-grep) |
 | 코드 탐색 | [CodeGraph](https://github.com/colbymchenry/codegraph) |
 
-빌드 문맥과 compilation database를 먼저 맞춘다. Blueprint·에셋·리플렉션 경로는 엔진 검증과 테스트로 확인한다.
+빌드 설정과 컴파일 데이터베이스(compilation database)를 먼저 맞춘다. Blueprint, 에셋, 리플렉션 경로는 엔진 검증과 테스트로 확인한다.
 
 <a id="unity-csharp"></a>
 ## Unity / C#
@@ -26,7 +26,7 @@ Windows 11과 PowerShell을 기준으로 정리했다. 설치 명령은 특정 �
 | 추가 또는 대체 | [Unity Project Auditor](https://docs.unity3d.com/Packages/com.unity.project-auditor@1.0/manual/index.html) (엔진/SDK 제공), [ArchUnitNET](https://github.com/TNG/ArchUnitNET), [ast-grep](https://github.com/ast-grep/ast-grep) |
 | 코드 탐색 | [CodeGraph](https://github.com/colbymchenry/codegraph) |
 
-씬·프리팹·직렬화 참조를 소스 그래프와 분리한다. 순수 C# 계층부터 아키텍처 테스트를 검토한다.
+씬, 프리팹, 직렬화 참조는 소스 코드 그래프와 구분한다. 아키텍처 테스트는 순수 C# 계층부터 적용할지 검토한다.
 
 <a id="android"></a>
 ## Android / Kotlin / Java
@@ -37,7 +37,7 @@ Windows 11과 PowerShell을 기준으로 정리했다. 설치 명령은 특정 �
 | 추가 또는 대체 | [ktlint](https://github.com/ktlint/ktlint), [Spotless](https://github.com/diffplug/spotless), [Error Prone](https://github.com/google/error-prone), [ast-grep](https://github.com/ast-grep/ast-grep) |
 | 코드 탐색 | [CodeGraph](https://github.com/colbymchenry/codegraph) |
 
-ktlint 직접 실행 또는 Spotless 통합 중 선택한다. Error Prone은 Java 부분만 대상으로 한다.
+ktlint는 직접 실행하거나 Spotless를 통해 사용할 수 있다. 같은 검사를 중복 실행할 필요는 없다. Error Prone은 Java 코드에만 적용한다.
 
 <a id="java-backend"></a>
 ## Java 웹 백엔드
@@ -48,7 +48,7 @@ ktlint 직접 실행 또는 Spotless 통합 중 선택한다. Error Prone은 Jav
 | 추가 또는 대체 | [Dependency Analysis Gradle Plugin](https://github.com/autonomousapps/dependency-analysis-gradle-plugin), [Maven dependency:analyze](https://github.com/apache/maven-dependency-plugin), [ast-grep](https://github.com/ast-grep/ast-grep) |
 | 코드 탐색 | [CodeGraph](https://github.com/colbymchenry/codegraph) |
 
-의존성 분석기는 Maven/Gradle에 맞춰 선택한다. 동적 DI·서비스 등록 경로는 테스트로 확인한다.
+의존성 분석기는 Maven 또는 Gradle 환경에 맞춰 선택한다. 동적 DI와 서비스 등록 경로는 테스트로 확인한다.
 
 <a id="swift-ios"></a>
 ## Swift / iOS
@@ -59,7 +59,7 @@ ktlint 직접 실행 또는 Spotless 통합 중 선택한다. Error Prone은 Jav
 | 추가 또는 대체 | [ast-grep](https://github.com/ast-grep/ast-grep) |
 | 코드 탐색 | [CodeGraph](https://github.com/colbymchenry/codegraph) |
 
-Xcode 빌드·테스트에는 macOS 러너가 필요하다. 이 목록에서 검증한 Periphery의 동등한 퍼미시브 대체는 없다.
+Xcode 빌드와 테스트에는 macOS 러너가 필요하다. 조사한 자료에서는 Periphery와 같은 기능을 제공하는 퍼미시브 대체 도구를 확인하지 못했다.
 
 <a id="dart-flutter"></a>
 ## Dart / Flutter
@@ -70,7 +70,7 @@ Xcode 빌드·테스트에는 macOS 러너가 필요하다. 이 목록에서 검
 | 추가 또는 대체 | [Dart Code Linter](https://github.com/bancolombia/dart-code-linter) |
 | 코드 탐색 | [CodeGraph](https://github.com/colbymchenry/codegraph) |
 
-패키지 의존성 검사와 프로젝트 전체 데드코드 판정을 구분한다. analyzer SDK 및 Flutter 플러그인 호환성을 확인한다.
+패키지 의존성을 검사하는 것과 프로젝트 전체의 데드코드를 판정하는 것은 구분한다. analyzer SDK와 Flutter 플러그인의 호환성을 확인한다.
 
 <a id="typescript-web"></a>
 ## 웹 / JavaScript / TypeScript
@@ -81,7 +81,7 @@ Xcode 빌드·테스트에는 macOS 러너가 필요하다. 이 목록에서 검
 | 추가 또는 대체 | [Fallow](https://github.com/fallow-rs/fallow), [dependency-cruiser](https://github.com/sverweij/dependency-cruiser), [Biome](https://github.com/biomejs/biome), [Oxlint](https://github.com/oxc-project/oxc), [ast-grep](https://github.com/ast-grep/ast-grep) |
 | 코드 탐색 | [CodeGraph](https://github.com/colbymchenry/codegraph) |
 
-Knip과 Fallow는 병행 실행할 수 있다. 미사용 코드와 의존성 진단은 겹치므로 결과 중복과 CI 차단 기준을 조정한다. Fallow의 복잡도, 중복, 순환 의존성, 아키텍처 검사도 활용할 수 있다. 자동 수정은 변경 사항을 검토한 뒤 적용한다. 다른 린터와 포매터도 모두 필수로 켤 필요는 없다. Fallow는 MIT 정적 코어만 포함한다.
+Knip과 Fallow는 병행 실행할 수 있지만 미사용 코드와 의존성 진단이 겹치므로 중복 결과와 CI 차단 기준을 조정한다. Fallow는 복잡도, 중복, 순환 의존성, 아키텍처 검사에도 활용할 수 있다. 자동 수정이나 삭제는 변경 대상을 검토한 뒤 적용하며, 다른 린터와 포매터를 모두 필수로 활성화할 필요는 없다. Fallow는 MIT 라이선스의 정적 분석 코어만 포함한다.
 
 <a id="go"></a>
 ## Go
@@ -92,7 +92,7 @@ Knip과 Fallow는 병행 실행할 수 있다. 미사용 코드와 의존성 진
 | 추가 또는 대체 | [Go deadcode](https://github.com/golang/tools), [ast-grep](https://github.com/ast-grep/ast-grep) |
 | 코드 탐색 | [CodeGraph](https://github.com/colbymchenry/codegraph) |
 
-go fmt·go vet·go test는 별도 기본 검사다. build tag와 target 범위를 기록한다.
+go fmt, go vet, go test는 별도로 실행하는 기본 검사다. build tag와 target의 검사 범위를 기록한다.
 
 <a id="rust"></a>
 ## Rust
@@ -103,7 +103,7 @@ go fmt·go vet·go test는 별도 기본 검사다. build tag와 target 범위�
 | 추가 또는 대체 | [cargo-udeps](https://github.com/est31/cargo-udeps), [ast-grep](https://github.com/ast-grep/ast-grep) |
 | 코드 탐색 | [CodeGraph](https://github.com/colbymchenry/codegraph) |
 
-cargo fmt·build·test와 분리한다. feature/target 조합을 고정하고 cargo-udeps의 nightly 요구를 고려한다.
+cargo fmt, build, test와 분석 도구의 검사를 구분한다. feature/target 조합을 고정하고 cargo-udeps에 필요한 nightly 환경을 고려한다.
 
 <a id="python"></a>
 ## Python
@@ -114,7 +114,7 @@ cargo fmt·build·test와 분리한다. feature/target 조합을 고정하고 ca
 | 추가 또는 대체 | [mypy](https://github.com/python/mypy), [Vulture](https://github.com/jendrikseipp/vulture), [Import Linter](https://github.com/seddonym/import-linter), [pip-audit](https://github.com/pypa/pip-audit), [Bandit](https://github.com/PyCQA/bandit), [ast-grep](https://github.com/ast-grep/ast-grep) |
 | 코드 탐색 | [CodeGraph](https://github.com/colbymchenry/codegraph) |
 
-타입 검사기는 Pyright 또는 mypy 중 선택한다. 가상환경·동적 import·엔트리포인트를 포함해 검사한다.
+Pyright와 mypy는 기존 설정과 필요한 진단을 보고 구성한다. 가상환경, 동적 import, 엔트리포인트를 고려해 검사한다.
 
 <a id="godot"></a>
 ## Godot / GDScript
@@ -125,14 +125,14 @@ cargo fmt·build·test와 분리한다. feature/target 조합을 고정하고 ca
 | 추가 또는 대체 | [gdUnit4](https://github.com/godot-gdunit-labs/gdUnit4) |
 | 코드 탐색 | 없음 |
 
-GUT 또는 gdUnit4 중 선택한다. Godot 내장 LSP는 IDE에서 활용한다. GDScript용 범용 그래프 추천은 비워두며, C#/GDExtension C++은 별도 언어 프로필로 검토한다.
+GUT와 gdUnit4는 필요한 테스트와 기존 설정을 보고 구성한다. Godot 내장 LSP는 IDE에서 활용한다. 이 목록에는 GDScript용 범용 그래프 후보를 아직 넣지 않았다. C#과 GDExtension C++은 해당 언어의 구성을 따로 검토한다.
 
 ## 단계별 적용
 
 | 단계 | 작업 | 확인할 결과 |
 | --- | --- | --- |
-| 1. 기존 기준 확보 | 현재 빌드·테스트와 버전·작업 디렉터리 기록 | 기존 실패와 새 검사 실패 구분 |
-| 2. 검사기 하나 도입 | 기본 규칙·범위·진입점 설정 | 알려진 결함을 잡고 정상 동적 경로는 보존 |
-| 3. CI 연결 | 도구별 종료 코드·예외·baseline 명시 | 누락·timeout·partial을 PASS로 처리하지 않음 |
-| 4. 구조 검사 추가 | 계층·순환·의존성 정책 정의 | 규칙 위반을 재현 가능한 실패로 판정 |
-| 5. 탐색 도구 추가 | 필요한 그래프만 인덱싱 | 탐색 결과와 품질 게이트의 책임 분리 |
+| 1. 현재 상태 기록 | 빌드와 테스트 결과, 버전, 작업 디렉터리를 남긴다. | 기존 문제와 새 검사에서 발견한 문제를 구분한다. |
+| 2. 작은 범위에서 검사 | 규칙, 대상 파일, 진입점을 설정한다. | 알려진 결함을 찾고 정상적인 동적 참조는 보존한다. |
+| 3. CI 연결 | 종료 코드, 예외, 기존 문제 목록인 baseline을 정한다. | 누락, 시간 초과, 일부 파일만 검사한 결과를 통과로 처리하지 않는다. |
+| 4. 구조 검사 추가 | 계층, 순환 참조, 의존성 규칙을 정한다. | 규칙을 어긴 변경이 실제로 검사에 실패하는지 확인한다. |
+| 5. 코드 탐색 연결 | 필요한 코드 그래프를 만든다. | 탐색 결과와 CI의 합격 판정을 구분한다. |

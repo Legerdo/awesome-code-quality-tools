@@ -27,5 +27,7 @@ jobs:
           python-version: '3.13'
       - name: Check policy, evidence, references, links, and generated tables
         run: python scripts/catalog.py --check
+      - name: Check agent skill files
+        run: python scripts/check_skills.py
       - name: Run positive and negative fixtures
         run: python -m unittest discover -s tests -v

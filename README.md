@@ -4,9 +4,9 @@
 [![Catalog CI](https://github.com/Legerdo/awesome-code-quality-tools/actions/workflows/catalog.yml/badge.svg)](https://github.com/Legerdo/awesome-code-quality-tools/actions/workflows/catalog.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-상업용 프로젝트에 사용할 코드 품질 검사기와 코드 탐색 도구를 개발 환경별로 정리한 목록이다. MIT, Apache-2.0, BSD, ISC처럼 라이선스 조건이 비교적 단순한 오픈소스를 우선 소개한다.
+게임, 앱, 웹, 서버 프로젝트에서 쓸 코드 품질 도구를 모았다. 코드 검사기부터 의존성 관리, 코드 그래프까지 개발 환경별로 찾아볼 수 있다. 라이선스 검토 부담을 줄이기 위해 MIT, Apache-2.0, BSD, ISC 계열을 우선한다.
 
-**수록 범위:** 개발 환경 11개, 일반 추천 도구 53개, 엔진 및 SDK 제공 기능 5개. 추천에서 제외한 도구 10개도 이유와 대안을 기록했다.
+개발 환경 11개를 다룬다. 일반 추천 도구 53개와 엔진 및 SDK 제공 기능 5개를 수록했고, 제외한 도구 10개의 이유도 남겼다.
 
 **자료 확인일:** 2026-10-27. 공식 문서와 라이선스 원문을 검토한 목록이다. 도구의 실제 실행, 탐지 정확도, 배포물의 전체 라이선스는 검증하지 않았다.
 
@@ -15,24 +15,21 @@
 - [개발 환경별 추천](#quick-start)
 - [코드 그래프와 AI 탐색](#graphs)
 - [공통 품질 검사와 보안 도구](#common)
+- [AI 에이전트로 활용하기](#agents)
 - [라이선스 선정 기준](#selection)
 - [자료 관리와 검증](#verification)
 - **추가 자료:** [전체 도구 목록](docs/TOOLS.md), [스택별 상세 가이드](docs/PROFILES.md), [추천 제외 이력](docs/EXCLUDED.md)
 
-## 도구 선택 전에
+## 읽는 방법
 
-코드 탐색 도구와 품질 검사기는 역할이 다르다.
+개발 환경별 표에서 도구를 찾고, 상세 가이드에서 필요한 설정과 한계를 확인한다. 표는 모두 설치하라는 뜻이 아니다. 기존 검사와 겹치는 기능, 새로 확인할 문제를 기준으로 구성을 정한다.
 
-- **코드 그래프:** 심볼, 호출 관계, 변경 영향을 탐색한다. 코드가 실제로 사용되는지 또는 수정이 안전한지를 단독으로 증명하지는 못한다.
-- **정적 검사:** 미사용 코드와 의존성, 코딩 규칙, 아키텍처 위반 등을 찾는다. 빌드나 실행 테스트를 대신하지 않는다.
-- **빌드 및 테스트:** 지정된 설정과 입력에서 동작을 확인한다. 실행하지 않은 경로까지 검증한 것은 아니다.
-
-표에 나온 도구는 **도입 후보**다. 같은 역할의 도구를 모두 설치하기보다 프로젝트에 맞는 것부터 선택하는 편이 낫다.
+코드 그래프는 구조와 참조를 찾고, 정적 검사기는 코드와 의존성의 문제를 찾는다. 실제 동작은 빌드와 테스트로 확인해야 한다. 어느 한 검사도 확인하지 않은 경로의 안전성까지 보장하지 않는다.
 
 <a id="quick-start"></a>
 ## 개발 환경별 추천
 
-먼저 검토할 도구만 추렸다. 추가 검사기와 대체 도구, 엔진별 주의사항은 각 개발 환경의 링크에서 확인할 수 있다. 이름 뒤의 **(엔진/SDK 제공)** 표시는 일반 오픈소스와 사용 조건이 다를 수 있다는 뜻이다.
+각 환경의 기본 조합이다. 개발 환경 이름을 누르면 추가 도구와 설정 조건을 볼 수 있다. **(엔진/SDK 제공)** 기능은 해당 제품의 사용 조건을 따라야 한다.
 
 | 개발 환경 | 먼저 살펴볼 도구 |
 | --- | --- |
@@ -55,15 +52,15 @@ Godot의 GDScript는 CodeGraph의 확인된 지원 언어에 포함되지 않는
 <a id="graphs"></a>
 ## 코드 그래프와 AI 탐색
 
-이 목록에서 **CodeGraph**는 [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph)를 가리킨다. CodeGraphContext는 다른 프로젝트다. 그래프 조회 결과와 AI가 생성한 설명은 구분해서 확인해야 한다.
+**CodeGraph**는 [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph)다. CodeGraphContext와 이름은 비슷하지만 다른 프로젝트다. AI가 만든 설명을 실제 코드의 참조 관계와 같다고 보지는 않는다.
 
 | 도구 | 주요 기능 | 라이선스 |
 | --- | --- | --- |
-| [CodeGraph](https://github.com/colbymchenry/codegraph) | 심볼과 호출 관계를 로컬 그래프로 만들고 변경 영향과 관련 테스트를 찾는다. CLI, MCP, 증분 동기화를 지원한다. | [MIT](https://github.com/colbymchenry/codegraph/blob/main/LICENSE) |
+| [CodeGraph](https://github.com/colbymchenry/codegraph) | 지정한 저장소의 심볼과 호출 관계를 로컬 그래프로 만들어 변경 영향과 관련 테스트를 찾는다. CLI, MCP, 증분 동기화를 지원한다. | [MIT](https://github.com/colbymchenry/codegraph/blob/main/LICENSE) |
 | [Graphify](https://github.com/Graphify-Labs/graphify) | 코드 구조를 문서와 설계 자료에 연결해 지식 그래프를 만든다. | [Apache-2.0](https://github.com/Graphify-Labs/graphify/blob/v8/LICENSE) |
-| [Understand Anything](https://github.com/Egonex-AI/Understand-Anything) | 코드베이스를 시각화하고 아키텍처 설명과 처음 접하는 코드를 위한 안내를 제공한다. | [MIT](https://github.com/Egonex-AI/Understand-Anything/blob/main/LICENSE) |
+| [Understand Anything](https://github.com/Egonex-AI/Understand-Anything) | 코드베이스를 시각화하고 처음 읽는 사람에게 구조와 아키텍처를 설명한다. | [MIT](https://github.com/Egonex-AI/Understand-Anything/blob/main/LICENSE) |
 | [CodeGraphContext](https://github.com/CodeGraphContext/CodeGraphContext) | 코드의 관계를 그래프 DB에 저장하고 CLI나 MCP로 조회한다. 일부 언어에서는 SCIP 인덱싱을 지원한다. | [MIT](https://github.com/CodeGraphContext/CodeGraphContext/blob/main/LICENSE) |
-| [Joern](https://github.com/joernio/joern) | Code Property Graph로 제어 흐름과 데이터 흐름을 분석하고 보안 관련 질의를 수행한다. | [Apache-2.0](https://github.com/joernio/joern/blob/master/LICENSE) |
+| [Joern](https://github.com/joernio/joern) | Code Property Graph를 이용해 제어 흐름과 데이터 흐름을 분석하고 보안 관련 질의를 수행한다. | [Apache-2.0](https://github.com/joernio/joern/blob/master/LICENSE) |
 
 <a id="common"></a>
 ## 공통 품질 검사와 보안 도구
@@ -72,42 +69,62 @@ Godot의 GDScript는 CodeGraph의 확인된 지원 언어에 포함되지 않는
 
 | 도구 | 주요 기능 | 라이선스 |
 | --- | --- | --- |
-| [ast-grep](https://github.com/ast-grep/ast-grep) | Tree-sitter AST 패턴으로 코드를 찾고 사용자 정의 규칙과 구조적 코드 변환을 적용한다. | [MIT](https://github.com/ast-grep/ast-grep/blob/main/LICENSE) |
-| [jscpd](https://github.com/kucherenko/jscpd) | 여러 언어와 파일 형식에서 복사해 붙여넣은 코드의 중복을 찾는다. | [MIT](https://github.com/kucherenko/jscpd/blob/master/LICENSE) |
+| [ast-grep](https://github.com/ast-grep/ast-grep) | Tree-sitter AST 패턴으로 코드를 검색하고 사용자 정의 규칙과 구조적 코드 변환을 적용한다. | [MIT](https://github.com/ast-grep/ast-grep/blob/main/LICENSE) |
+| [jscpd](https://github.com/kucherenko/jscpd) | 여러 언어와 파일 형식에서 복사해 붙여넣은 중복 코드를 찾는다. | [MIT](https://github.com/kucherenko/jscpd/blob/master/LICENSE) |
 | [Lizard](https://github.com/terryyin/lizard) | 함수 길이와 순환 복잡도 등 코드 메트릭을 측정한다. | [MIT](https://github.com/terryyin/lizard/blob/master/LICENSE.txt) |
 | [Gitleaks CLI](https://github.com/gitleaks/gitleaks) | 소스코드와 Git 기록에서 비밀정보 노출을 찾는다. | [MIT](https://github.com/gitleaks/gitleaks/blob/master/LICENSE) |
 | [OSV-Scanner](https://github.com/google/osv-scanner) | 지원하는 manifest, lockfile, SBOM에서 알려진 의존성 취약점을 검사한다. | [Apache-2.0](https://github.com/google/osv-scanner/blob/main/LICENSE) |
 | [Lefthook](https://github.com/evilmartians/lefthook) | Git hook에서 여러 검사 명령을 실행한다. | [MIT](https://github.com/evilmartians/lefthook/blob/master/LICENSE) |
 | [StrykerJS / Stryker.NET](https://github.com/stryker-mutator/stryker-js) | 코드를 변형해 테스트가 결함을 찾아내는지 확인하는 mutation testing 도구다. | [Apache-2.0](https://github.com/stryker-mutator/stryker-js/blob/master/LICENSE) |
 
+<a id="agents"></a>
+
+## AI 에이전트로 활용하기
+
+도구를 고르거나 이 목록을 관리할 때 쓸 스킬을 함께 제공한다. [AGENTS.md](AGENTS.md)에 작업 규칙을, [에이전트 안내](docs/AGENT-GUIDE.md)에 사용 예시를 정리했다.
+
+| 스킬 | 용도 |
+| --- | --- |
+| [choose-quality-tools](.agents/skills/choose-quality-tools/SKILL.md) | 프로젝트 설정을 읽고 검사 도구와 검증 방법을 제안한다. |
+| [maintain-quality-catalog](.agents/skills/maintain-quality-catalog/SKILL.md) | 공식 근거를 확인해 도구 정보와 추천 구성을 갱신한다. |
+| [edit-korean-docs](.agents/skills/edit-korean-docs/SKILL.md) | 기능과 조건을 유지하면서 한국어 문장과 Markdown을 다듬는다. |
+
+필요한 항목만 읽으려면 저장소 루트에서 다음 명령을 실행한다. 도구를 설치하거나 프로젝트 코드를 검사하는 명령은 아니다.
+
+```powershell
+python scripts/query_catalog.py --profile typescript-web
+python scripts/query_catalog.py --tool fallow
+```
+
 <a id="selection"></a>
 ## 라이선스 선정 기준
 
 - **우선 추천:** MIT, Apache-2.0, BSD, ISC 등 사용 조건이 비교적 단순한 라이선스의 도구.
 - **별도 표시:** Unreal, Unity, Android에서 제공하는 엔진 및 SDK 기능. 해당 제품의 사용 조건을 따라야 한다.
-- **추천 제외:** 비상업 용도로 제한되거나, 별도 유료 계약이 필요하거나, 현재 유지보수 상태가 달라진 도구. GPL, LGPL, AGPL 도구도 보수적으로 제외한다.
+- **추천 제외:** 비상업 제한, 별도 유료 계약, 구버전 유지보수 부담 등으로 기본 목록에서 뺀 도구. GPL, LGPL, AGPL도 제외한다.
 
 **GPL, LGPL, AGPL이 상업적 사용을 금지하는 것은 아니다.** 다만 수정본 배포나 결합 방식에 따라 추가 의무가 생길 수 있어 기본 추천에서 제외했다.
 
-Fallow는 MIT 라이선스의 정적 분석 코어, Gitleaks는 MIT 라이선스의 CLI, Graphify는 오픈소스 패키지만 포함한다. 연동 DB, 룰팩, GitHub Action, 호스팅 서비스 등은 별도 조건을 확인해야 한다.
+Fallow는 MIT 라이선스의 정적 분석 기능, Gitleaks는 MIT 라이선스의 CLI, Graphify는 오픈소스 패키지만 포함한다. 연동 DB, 룰팩, GitHub Action, 호스팅 서비스 등은 별도 조건을 확인해야 한다.
 
 [선정 기준과 라이선스 원문](docs/LICENSE-POLICY.md) 및 [추천 제외 사유](docs/EXCLUDED.md)에 자세히 정리했다.
 
 <a id="verification"></a>
 ## 자료 관리와 검증
 
-도구 정보와 추천 조합은 [data/catalog.json](data/catalog.json)에서 관리한다. README와 상세 문서는 [scripts/catalog.py](scripts/catalog.py)로 생성한다. 문서의 문구나 배치를 바꾸려면 생성기를 수정해야 한다.
+도구 설명과 추천 조합은 [data/catalog.json](data/catalog.json)이 원본이다. README와 상세표는 [scripts/catalog.py](scripts/catalog.py)로 만든다. 생성된 문서만 직접 고치면 다음 생성 때 덮어써지므로 원본부터 수정한다.
 
-[라이선스 근거 기록](data/license-evidence.json)에는 확인한 파일 경로, Git blob SHA, 조회 시점을 남겼다. CI는 라이선스 분류, 제외 도구의 재유입, 언어별 추천, 내부 링크, 생성 문서와 데이터의 일치 여부를 검사한다. 외부 링크의 가용성과 수록 도구의 실행 성능은 검사하지 않는다.
+[라이선스 조회 기록](data/license-evidence.json)에는 파일 경로, Git blob SHA, 확인 시점을 남겼다. CI는 목록과 문서가 일치하는지, 제외한 도구가 추천에 다시 들어갔는지, 링크와 스킬 형식에 문제가 없는지 검사한다. 수록 도구의 성능이나 에이전트의 실제 행동까지 시험하지는 않는다.
 
 ```powershell
 python scripts/catalog.py --write
 python scripts/catalog.py --check
+python scripts/check_skills.py
 python -m unittest discover -s tests -v
 ```
 
-수정 및 추가 방법은 [기여 안내](CONTRIBUTING.md), 검증 범위는 [검증 안내](docs/VERIFICATION.md)를 참고하면 된다. 생성 및 검사는 Python 3.13 표준 라이브러리만 사용하며 Windows와 Ubuntu에서 CI를 실행한다.
+Python 3.13 표준 라이브러리만 사용하며 Windows와 Ubuntu에서 CI를 실행한다. 변경 절차는 [기여 안내](CONTRIBUTING.md), 문장 편집은 [작성 기준](docs/WRITING.md), 검사 범위는 [검증 안내](docs/VERIFICATION.md)를 참고한다.
 
 ## 라이선스
 
-이 저장소에서 작성한 문서, 데이터, 검사 스크립트에는 [MIT 라이선스](LICENSE)를 적용한다. 소개한 도구에는 각 프로젝트의 라이선스가 적용된다. 이 목록은 법률 자문이나 개별 배포물의 라이선스 적합성 인증이 아니다.
+이 저장소에서 작성한 문서, 데이터, 스킬과 검사 스크립트에는 [MIT 라이선스](LICENSE)를 적용한다. 소개한 도구에는 각 프로젝트의 라이선스가 적용된다. 이 목록은 법률 자문이나 개별 배포물의 라이선스 적합성 인증이 아니다.
